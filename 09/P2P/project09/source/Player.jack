@@ -1,0 +1,210 @@
+/**  Class that represents the player */
+class Player
+{
+	/* The player position */
+	field int xPos, yPos;
+
+	/* Create the player*/
+	constructor Player new()
+	{
+		let yPos = 0;
+		let xPos = 0;
+
+		return this;
+	}
+	
+	/* Check player movement based on the pressed key */
+	method void movePlayer(char pressedKey, GameField gameField)
+	{
+		do Screen.setColor(false);
+		/* Left key pressed */
+		if (pressedKey = 130)
+		{
+			/* If it is possible to move to the left field */
+			if (validFieldTypeToMove(gameField.getFieldType(xPos - 1, yPos)))
+			{
+				/* Make the current player position field white */
+				do Screen.drawRectangle((Global.getXTranslation() + xPos) * 16, (Global.getYTranslation() + yPos) * 16, (Global.getXTranslation() + xPos) * 16 + 15, (Global.getYTranslation() + yPos) * 16 + 15);
+				/* Move left */
+				let xPos = xPos - 1;
+			}
+			do drawLeft();
+		}
+		/* Up key pressed */
+		if (pressedKey = 131)
+		{
+			/* If it is possible to move to the upper field */
+			if (validFieldTypeToMove(gameField.getFieldType(xPos, yPos - 1)))
+			{
+				/* Make the current player position field white */
+				do Screen.drawRectangle((Global.getXTranslation() + xPos) * 16, (Global.getYTranslation() + yPos) * 16, (Global.getXTranslation() + xPos) * 16 + 15, (Global.getYTranslation() + yPos) * 16 + 15);
+				/* Move up */
+				let yPos = yPos - 1;
+			}
+			do drawBack();
+		}
+		/* Right key pressed */
+		if (pressedKey = 132)
+		{
+			/* If it is possible to move to the right field */
+			if (validFieldTypeToMove(gameField.getFieldType(xPos + 1, yPos)))
+			{
+				/* Make the current player position field white */
+				do Screen.drawRectangle((Global.getXTranslation() + xPos) * 16, (Global.getYTranslation() + yPos) * 16, (Global.getXTranslation() + xPos) * 16 + 15, (Global.getYTranslation() + yPos) * 16 + 15);
+				/* Move right */
+				let xPos = xPos + 1;
+			}
+			do drawRight();
+		}
+		/* Down key pressed */
+		if (pressedKey = 133)
+		{
+			/* If it is possible to move to the lower field */
+			if (validFieldTypeToMove(gameField.getFieldType(xPos, yPos + 1)))
+			{
+				/* Make the current player position field white */
+				do Screen.drawRectangle((Global.getXTranslation() + xPos) * 16, (Global.getYTranslation() + yPos) * 16, (Global.getXTranslation() + xPos) * 16 + 15, (Global.getYTranslation() + yPos) * 16 + 15);
+				/* Move down */
+				let yPos = yPos + 1;
+			}
+			do drawFront();
+		}
+		
+		return;
+	}
+	
+	/* Get x position */
+	method int getXPos()
+	{
+		return xPos;
+	}
+	
+	/* Get y position*/
+	method int getYPos()
+	{
+		return yPos;
+	}
+	
+	/* Check if the player can move to the given field type */
+	method bool validFieldTypeToMove(int fieldType)
+	{
+		/* The player can move to an empty field (0), flame field (4) or enemy field (5) */
+		if ((fieldType = 0) | (fieldType = 4) | (fieldType = 5))
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	/* Draw the player when facing front */
+	method void drawFront()
+	{
+		var int memAddress, location;
+		let location = Global.getDrawLocation(xPos, yPos);
+		let memAddress = 16384+location;
+
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 2032);
+		do Memory.poke(memAddress+64, 6156);
+		do Memory.poke(memAddress+96, 8194);
+		do Memory.poke(memAddress+128, 8738);
+		do Memory.poke(memAddress+160, 8738);
+		do Memory.poke(memAddress+192, 8194);
+		do Memory.poke(memAddress+224, 6156);
+		do Memory.poke(memAddress+256, 2032);
+		do Memory.poke(memAddress+288, 30735);
+		do Memory.poke(memAddress+320, 20485);
+		do Memory.poke(memAddress+352, 24573);
+		do Memory.poke(memAddress+384, 28679);
+		do Memory.poke(memAddress+416, 2504);
+		do Memory.poke(memAddress+448, 1584);
+		do Memory.poke(memAddress+480, 3640);
+		return;
+	}
+	
+	/* Draw the player when facing back */
+	method void drawBack()
+	{
+		var int memAddress, location;
+		let location = Global.getDrawLocation(xPos, yPos);
+		let memAddress = 16384+location;
+
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 2032);
+		do Memory.poke(memAddress+64, 6156);
+		do Memory.poke(memAddress+96, 10226);
+		do Memory.poke(memAddress+128, 8194);
+		do Memory.poke(memAddress+160, 8194);
+		do Memory.poke(memAddress+192, 8194);
+		do Memory.poke(memAddress+224, 6156);
+		do Memory.poke(memAddress+256, 2032);
+		do Memory.poke(memAddress+288, 30735);
+		do Memory.poke(memAddress+320, 20485);
+		do Memory.poke(memAddress+352, 24573);
+		do Memory.poke(memAddress+384, 28679);
+		do Memory.poke(memAddress+416, 2504);
+		do Memory.poke(memAddress+448, 1584);
+		do Memory.poke(memAddress+480, 3640);
+		return;
+	}
+	
+	/* Draw the player when facing left */
+	method void drawLeft()
+	{
+		var int memAddress, location;
+		let location = Global.getDrawLocation(xPos, yPos);
+		let memAddress = 16384+location;
+
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 2032);
+		do Memory.poke(memAddress+64, 6156);
+		do Memory.poke(memAddress+96, 8194);
+		do Memory.poke(memAddress+128, 8202);
+		do Memory.poke(memAddress+160, 8202);
+		do Memory.poke(memAddress+192, 8194);
+		do Memory.poke(memAddress+224, 6156);
+		do Memory.poke(memAddress+256, 2032);
+		do Memory.poke(memAddress+288, 2376);
+		do Memory.poke(memAddress+320, 4420);
+		do Memory.poke(memAddress+352, 8060);
+		do Memory.poke(memAddress+384, 4420);
+		do Memory.poke(memAddress+416, 2504);
+		do Memory.poke(memAddress+448, 2032);
+		do Memory.poke(memAddress+480, 1016);
+		return;
+	}
+	
+	/* Draw the player when facing right */
+	method void drawRight()
+	{
+		var int memAddress, location;
+		let location = Global.getDrawLocation(xPos, yPos);
+		let memAddress = 16384+location;
+
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 2032);
+		do Memory.poke(memAddress+64, 6156);
+		do Memory.poke(memAddress+96, 8194);
+		do Memory.poke(memAddress+128, 10242);
+		do Memory.poke(memAddress+160, 10242);
+		do Memory.poke(memAddress+192, 8194);
+		do Memory.poke(memAddress+224, 6156);
+		do Memory.poke(memAddress+256, 2032);
+		do Memory.poke(memAddress+288, 2376);
+		do Memory.poke(memAddress+320, 4420);
+		do Memory.poke(memAddress+352, 8060);
+		do Memory.poke(memAddress+384, 4420);
+		do Memory.poke(memAddress+416, 2504);
+		do Memory.poke(memAddress+448, 2032);
+		do Memory.poke(memAddress+480, 4064);
+		return;
+	}
+	
+	/* Dispose method */
+	method void dispose()
+	{
+		do Memory.deAlloc(this);
+
+		return;
+	}
+}

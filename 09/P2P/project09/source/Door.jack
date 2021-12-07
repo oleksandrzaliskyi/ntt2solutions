@@ -1,0 +1,73 @@
+/** Class that represents the door */
+class Door
+{
+	/* Door position */
+	field int xPos, yPos;
+
+	/* Constructor method */
+	constructor Door new(int y, int x)
+	{
+		let xPos = x;
+		let yPos = y;
+
+		return this;
+	}
+	
+	/* Get the x position */
+	method int getXPos()
+	{
+		return xPos;
+	}
+	
+	/* Get the y position */
+	method int getYPos()
+	{
+		return yPos;
+	}
+	
+	/* Method that cheks if the player is standing at the door */
+	method bool checkIfPlayerAtDoor(Player player)
+	{
+		if ((player.getXPos() = xPos) & (player.getYPos() = yPos))
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	/* Draw the door */
+	method void draw()
+	{
+		var int location, memAddress;
+		let location = Global.getDrawLocation(xPos, yPos);
+		
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -1);
+		do Memory.poke(memAddress+64, -15997);
+		do Memory.poke(memAddress+96, -15997);
+		do Memory.poke(memAddress+128, -15997);
+		do Memory.poke(memAddress+160, -13933);
+		do Memory.poke(memAddress+192, -13933);
+		do Memory.poke(memAddress+224, -13933);
+		do Memory.poke(memAddress+256, -13933);
+		do Memory.poke(memAddress+288, -13933);
+		do Memory.poke(memAddress+320, -13933);
+		do Memory.poke(memAddress+352, -15997);
+		do Memory.poke(memAddress+384, -15997);
+		do Memory.poke(memAddress+416, -15997);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+
+		return;
+	}
+	
+	/* Dispose method */
+	method void dispose()
+	{
+		do Memory.deAlloc(this);
+
+		return;
+	}
+}

@@ -1,0 +1,63 @@
+/** Class that represent a block on the field */
+class Block
+{
+	/* Position of block */
+	field int xPos, yPos;
+	
+	/* Construct a new block */
+	constructor Block new(int x, int y, GameField gameField)
+	{
+		let xPos = x;
+		let yPos = y;
+		/* "Puts" the block on the field so that the field with the block position is marked with code 2 */
+		do gameField.setFieldType(xPos, yPos, 2);
+
+		return this;
+	}
+	
+	/* Get the x position */
+	method int getXPos()
+	{
+		return xPos;
+	}
+	
+	/* Get the y position */
+	method int getYPos()
+	{
+		return yPos;
+	}
+	
+	/* Draw the block on the screen */
+	method void draw()
+	{
+		var int location, memAddress;
+		let location = Global.getDrawLocation(xPos, yPos);
+
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -28655);
+		do Memory.poke(memAddress+64, -28655);
+		do Memory.poke(memAddress+96, -28655);
+		do Memory.poke(memAddress+128, -28655);
+		do Memory.poke(memAddress+160, -1);
+		do Memory.poke(memAddress+192, -32511);
+		do Memory.poke(memAddress+224, -32511);
+		do Memory.poke(memAddress+256, -32511);
+		do Memory.poke(memAddress+288, -32511);
+		do Memory.poke(memAddress+320, -1);
+		do Memory.poke(memAddress+352, -28639);
+		do Memory.poke(memAddress+384, -28639);
+		do Memory.poke(memAddress+416, -28639);
+		do Memory.poke(memAddress+448, -28639);
+		do Memory.poke(memAddress+480, -1);
+
+		return;
+	}
+	
+	/* Dispose method */
+	method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+}

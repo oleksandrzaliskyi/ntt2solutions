@@ -1,0 +1,355 @@
+/** Class that represents a flame when a bomb explodes*/
+class Flame
+{
+	/* Position and time until a flame is active*/
+	field int xPos, yPos, time;
+	/* Flags that indicate which parts of flame should be drawn */
+	field bool top, right, bottom, left;
+	
+	/* Constructor to create a flame */
+	constructor Flame new(int positionX, int positionY, GameField gameField)
+	{
+		var int fieldType;
+
+		let xPos = positionX;
+		let yPos = positionY;
+		let time = 125;
+		
+		/* Set the field type of the flame center to 4*/
+		do gameField.setFieldType(xPos, yPos, 4);
+		
+		/* Get the above field type */
+		let fieldType = gameField.getFieldType(xPos, yPos - 1);
+		/* If not outside of boundary or a wall, set flag to draw it and field type to 4*/
+		if (~(fieldType = -1) & ~(fieldType = 1))
+		{
+			let top = true;
+			do gameField.setFieldType(xPos, yPos - 1, 4);
+		}
+		else
+		{
+			let top = false;
+		}
+		
+		/* Get the right field type */
+		let fieldType = gameField.getFieldType(xPos + 1, yPos);
+		/* If not outside of boundary or a wall, set flag to draw it and field type to 4*/
+		if (~(fieldType = -1) & ~(fieldType = 1))
+		{
+			let right = true;
+			do gameField.setFieldType(xPos + 1, yPos, 4);
+		}
+		else
+		{
+			let right = false;
+		}
+		
+		/* Get the bottom field type */
+		let fieldType = gameField.getFieldType(xPos, yPos + 1);
+		/* If not outside of boundary or a wall, set flag to draw it and field type to 4*/
+		if (~(fieldType = -1) & ~(fieldType = 1))
+		{
+			let bottom = true;
+			do gameField.setFieldType(xPos, yPos + 1, 4);
+		}
+		else
+		{
+			let bottom = false;
+		}
+		
+		/* Get the left field type */
+		let fieldType = gameField.getFieldType(xPos - 1, yPos);
+		/* If not outside of boundary or a wall, set flag to draw it and field type to 4*/
+		if (~(fieldType = -1) & ~(fieldType = 1))
+		{
+			let left = true;
+			do gameField.setFieldType(xPos - 1, yPos, 4);
+		}
+		else
+		{
+			let left = false;
+		}
+
+		return this;
+	}
+
+	/* Decrement the life time of the flame */
+	method void decrementTime()
+	{
+		let time = time - 1;
+		
+		return;
+	}
+	
+	/* Get the life time of the flame */
+	method int getTime()
+	{
+		return time;
+	}
+	
+	/* Check if the flame kills the player */
+	method bool checkIfKillsPlayer(Player player)
+	{
+		var int xDiff, yDiff;
+
+		/* Use manhattan distance to determine if there is a contact */
+		let xDiff = Math.abs(player.getXPos() - xPos);
+		let yDiff = Math.abs(player.getYPos() - yPos);
+		/* If the distance is less than 2, then the player is positioned on the center or next to the center */
+		if ((xDiff + yDiff) < 2)
+		{
+			return true;
+		}
+
+		return false;
+	}
+	
+	/* Check if the flame kills enemies */
+	method void killEnemies(Array enemies)
+	{
+		var int xDiff, yDiff, i;
+		var Enemy enemy;
+
+		let i = 0;
+		/* Go through all living enemies */
+		while (i < Global.getNumberOfEnemies())
+		{
+			let enemy = enemies[i];
+			if (enemy.isAlive())
+			{
+				/* Use manhattan distance to determine if there is a contact */
+				let xDiff = Math.abs(enemy.getXPos() - xPos);
+				let yDiff = Math.abs(enemy.getYPos() - yPos);
+
+				/* If the distance is less than 2, then the enemy is positioned on the center or next to the center */
+				if ((xDiff + yDiff) < 2)
+				{
+					do enemy.killEnemy();
+					/* Increase the score when an enemy is killed and decrease number of living enemies */
+					do Global.increaseScore(10);
+					do Global.decrementLivingEnemies();
+				}
+			}
+			let i = i + 1;
+		}
+
+		return;
+	}
+	
+	/* Method that checks if the flame contacts a door, if yes then the door should be drawn again (else it will dissapear from the screen) */
+	method bool checkIfDoorsShouldBeDrawn(Door door)
+	{
+		var int xDiff, yDiff;
+		
+		/* Use manhattan distance to determine if there is a contact */
+		let xDiff = Math.abs(door.getXPos() - xPos);
+		let yDiff = Math.abs(door.getYPos() - yPos);
+		if ((xDiff + yDiff) < 2)
+		{
+			return true;
+		}
+
+		return false;
+	}
+	
+	/* Method to clear all the fields once when the flame life stops */
+	method void emptyFields(GameField gameField)
+	{
+		/* Set center field type to 0 */
+		do gameField.setFieldType(xPos, yPos, 0);
+		/* Draw white rectangle */
+		do Screen.drawRectangle((Global.getXTranslation() + xPos) * 16, (Global.getYTranslation() + yPos) * 16, (Global.getXTranslation() + xPos) * 16 + 15, (Global.getYTranslation() + yPos) * 16 + 15);
+	
+		/* Logic that cheks if a flame part was existing, if yes then set the field type to 0 and draw a white rectangle */
+		if (top)
+		{
+			do gameField.setFieldType(xPos, yPos - 1, 0);
+			do Screen.drawRectangle((Global.getXTranslation() + xPos) * 16, (Global.getYTranslation() + (yPos - 1)) * 16, (Global.getXTranslation() + xPos) * 16 + 15, (Global.getYTranslation() + (yPos - 1)) * 16 + 15);
+		}
+		if (right)
+		{
+			do gameField.setFieldType(xPos + 1, yPos, 0);
+			do Screen.drawRectangle((Global.getXTranslation() + (xPos + 1)) * 16, (Global.getYTranslation() + yPos) * 16, (Global.getXTranslation() + (xPos + 1)) * 16 + 15, (Global.getYTranslation() + yPos) * 16 + 15);
+		}
+		if (bottom)
+		{
+			do gameField.setFieldType(xPos, yPos + 1, 0);
+			do Screen.drawRectangle((Global.getXTranslation() + xPos) * 16, (Global.getYTranslation() + (yPos + 1)) * 16, (Global.getXTranslation() + xPos) * 16 + 15, (Global.getYTranslation() + (yPos + 1)) * 16 + 15);
+		}
+		if (left)
+		{
+			do gameField.setFieldType(xPos - 1, yPos, 0);
+			do Screen.drawRectangle((Global.getXTranslation() + (xPos- 1)) * 16, (Global.getYTranslation() + yPos) * 16, (Global.getXTranslation() + (xPos - 1)) * 16 + 15, (Global.getYTranslation() + yPos) * 16 + 15);
+		}
+
+		return;
+	}
+	
+	/* Draw the flame */
+	method void draw()
+	{
+		/* Always drawn since this is at the same position where the bomb was */
+		do drawCenter();
+
+		/* Check if different flame parts should be drawn */
+		if (top)
+		{
+			do drawTop();
+		}
+		if (right)
+		{
+			do drawRight();
+		}
+		if (bottom)
+		{
+			do drawBottom();
+		}
+		if (left)
+		{
+			do drawLeft();
+		}
+
+		return;
+	}
+	
+	/* Draw the center of flame */
+	method void drawCenter()
+	{
+		var int location, memAddress;
+		let location = Global.getDrawLocation(xPos, yPos);
+
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 2448);
+		do Memory.poke(memAddress+32, 2448);
+		do Memory.poke(memAddress+64, 2448);
+		do Memory.poke(memAddress+96, 2448);
+		do Memory.poke(memAddress+128, -1633);
+		do Memory.poke(memAddress+160, 384);
+		do Memory.poke(memAddress+192, 384);
+		do Memory.poke(memAddress+224, -1);
+		do Memory.poke(memAddress+256, -1);
+		do Memory.poke(memAddress+288, 384);
+		do Memory.poke(memAddress+320, 384);
+		do Memory.poke(memAddress+352, -1633);
+		do Memory.poke(memAddress+384, 2448);
+		do Memory.poke(memAddress+416, 2448);
+		do Memory.poke(memAddress+448, 2448);
+		do Memory.poke(memAddress+480, 2448);
+
+		return;
+	}
+	
+	/* Draw the upper part of flame */
+	method void drawTop()
+	{
+		var int location, memAddress;
+		let location = Global.getDrawLocation(xPos, yPos - 1);
+
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 0);
+		do Memory.poke(memAddress+64, 2016);
+		do Memory.poke(memAddress+96, 2064);
+		do Memory.poke(memAddress+128, 2448);
+		do Memory.poke(memAddress+160, 2448);
+		do Memory.poke(memAddress+192, 2448);
+		do Memory.poke(memAddress+224, 2448);
+		do Memory.poke(memAddress+256, 2448);
+		do Memory.poke(memAddress+288, 2448);
+		do Memory.poke(memAddress+320, 2448);
+		do Memory.poke(memAddress+352, 2448);
+		do Memory.poke(memAddress+384, 2448);
+		do Memory.poke(memAddress+416, 2448);
+		do Memory.poke(memAddress+448, 2448);
+		do Memory.poke(memAddress+480, 2448);
+
+		return;
+	}
+
+	/* Draw the right part of flame */
+	method void drawRight()
+	{
+		var int location, memAddress;
+		let location = Global.getDrawLocation(xPos + 1, yPos);
+
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 0);
+		do Memory.poke(memAddress+64, 0);
+		do Memory.poke(memAddress+96, 0);
+		do Memory.poke(memAddress+128, 8191);
+		do Memory.poke(memAddress+160, 8192);
+		do Memory.poke(memAddress+192, 8192);
+		do Memory.poke(memAddress+224, 12287);
+		do Memory.poke(memAddress+256, 12287);
+		do Memory.poke(memAddress+288, 8192);
+		do Memory.poke(memAddress+320, 8192);
+		do Memory.poke(memAddress+352, 8191);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, 0);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+
+		return;
+	}
+
+	/* Draw the bottom part of flame */
+	method void drawBottom()
+	{
+		var int location, memAddress;
+		let location = Global.getDrawLocation(xPos, yPos + 1);
+
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 2448);
+		do Memory.poke(memAddress+32, 2448);
+		do Memory.poke(memAddress+64, 2448);
+		do Memory.poke(memAddress+96, 2448);
+		do Memory.poke(memAddress+128, 2448);
+		do Memory.poke(memAddress+160, 2448);
+		do Memory.poke(memAddress+192, 2448);
+		do Memory.poke(memAddress+224, 2448);
+		do Memory.poke(memAddress+256, 2448);
+		do Memory.poke(memAddress+288, 2448);
+		do Memory.poke(memAddress+320, 2448);
+		do Memory.poke(memAddress+352, 2448);
+		do Memory.poke(memAddress+384, 2064);
+		do Memory.poke(memAddress+416, 2016);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+
+		return;
+	}
+
+	/* Draw the left part of flame */
+	method void drawLeft()
+	{
+		var int location, memAddress;
+		let location = Global.getDrawLocation(xPos - 1, yPos);
+
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 0);
+		do Memory.poke(memAddress+64, 0);
+		do Memory.poke(memAddress+96, 0);
+		do Memory.poke(memAddress+128, -8);
+		do Memory.poke(memAddress+160, 4);
+		do Memory.poke(memAddress+192, 4);
+		do Memory.poke(memAddress+224, -12);
+		do Memory.poke(memAddress+256, -12);
+		do Memory.poke(memAddress+288, 4);
+		do Memory.poke(memAddress+320, 4);
+		do Memory.poke(memAddress+352, -8);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, 0);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+		return;
+	}
+	
+	/* Dispose method */	
+	method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+}

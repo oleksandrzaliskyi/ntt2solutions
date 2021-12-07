@@ -1,0 +1,100 @@
+class Pipe {
+	field int x1, x2, y1Top, y2Top, y1Bottom, y2Bottom, heightSeed;
+  field boolean clearancePlacement;
+
+	/* 
+		x1 and x2 are the horizontal coordinates of the pipe alwasy 20px wide 
+		the variables y decide the height of the top and bottom pipes
+	*/
+	constructor Pipe new(int x) {
+		let x1 = x;
+		let x2 = x + 20;
+
+		let clearancePlacement= false;
+		let y1Top = 0;
+    let y2Top = 10;
+    let y1Bottom = 245;
+    let y2Bottom = 255;
+
+		return this;
+	}
+
+	/* checks if a new pipe needs to be created */
+	method boolean createNewPipe() {
+		if (x1 < 392) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+  /* checks if player is colliding with the pipe */
+	method boolean isColliding(int x, int y) {
+		if((((x+15) > x1) & ((x+15) < x2)) | (((x-15) > x1) & ((x-15) < x2))){
+      if(((y-15) < y2Top) | ((y+15) > y1Bottom)){
+        return true;
+      }
+    }
+    return false;
+  }
+
+	/*
+		move the pipe horizontally by 5 px if it is not out of screen
+		else change the height of the pipe so that it can be reused
+	*/
+	method boolean movePipe() {
+		var boolean temp;
+		if(x1 > 19){
+      let x1 = x1 - 5;
+      let x2 = x2 - 5;
+			let temp = false;
+    }else{
+      do setSeed(Game.getSteps());
+      do newPipeHeight();
+			let temp = true;
+      let x1 = 491;
+      let x2 = 511;
+    }
+		do drawPipe();
+    return temp;
+	}
+
+	method void drawPipe(){
+    do Screen.drawRectangle(x1,y1Top,x2,y2Top);
+    do Screen.drawRectangle(x1,y1Bottom,x2,y2Bottom);
+
+    return;
+  }
+
+	/* creates a pdesudo random seed for heights */
+	method void setSeed(int seed){
+    let heightSeed = (heightSeed/2 + seed*2 + 5)/4;
+    while(heightSeed > 120){
+      let heightSeed = heightSeed - 10;
+    }
+
+    return;
+  }
+
+	method void newPipeHeight(){
+    let y1Top = 0;
+    let y2Bottom = 255;
+
+    if(clearancePlacement){
+      let y2Top = y2Top - heightSeed + 20;
+      let y1Bottom = 205 - heightSeed;
+      let clearancePlacement = false;
+    }else{
+      let y2Top = 50 + heightSeed;
+      let y1Bottom = y1Bottom - heightSeed;
+      let clearancePlacement = true;
+    }
+
+    return;
+  }
+	method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+}

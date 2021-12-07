@@ -1,0 +1,231 @@
+/** Class that represents an enemy */
+class Enemy
+{
+	/* Position and velocity of enemy */
+	field int xPos, yPos, xVel, yVel;
+	/* Time until the enemy moves and how many steps will it go in the current direction (specified with velocity variables) */
+	field int  time, changeMovement;
+	/* Is the enemy alive flag */
+	field bool isAlive;
+
+	/* Create new enemy */
+	constructor Enemy new(int x, int y, GameField gameField)
+	{
+		let xPos = x;
+		let yPos = y;
+		let isAlive = true;
+		/* By setting the time to 1 the enemy will move soon */
+		let time = 1;
+		let changeMovement = 1;
+		let xVel = 0;
+		let yVel = 0;
+		
+		do gameField.setFieldType(xPos, yPos, 5);
+
+		return this;
+	}
+	
+	/* Get x position */
+	method int getXPos()
+	{
+		return xPos;
+	}
+	
+	/* Get y position */
+	method int getYPos()
+	{
+		return yPos;
+	}
+	
+	/* Check if the enemy kills the player */
+	method bool checkIfKillsPlayer(Player player)
+	{
+		/* Player is killed if they are both at the same position */
+		if ((player.getXPos() = xPos) & (player.getYPos() = yPos))
+		{
+			return true;
+		}
+
+		return false;
+	}
+	
+	/* Check if enemy is alive */
+	method bool isAlive()
+	{
+		return isAlive;
+	}
+	
+	/* Set the flag that the enemy is not alive */
+	method void killEnemy()
+	{
+		let isAlive = false;
+		return;
+	}
+
+	/* Decrement time until next movement */
+	method void decrementTime()
+	{
+		let time = time - 1;
+		return;
+	}
+
+	/* Get time until next movement */
+	method int getTime()
+	{
+		return time;
+	}
+	
+	/* Method to move enemy */
+	method void move(GameField gameField)
+	{
+		var int fieldType, newXPos, newYPos;
+		/* Reset time and decrement number of steps that the current velocity will be applied to */
+		let time = 50;
+		let changeMovement = changeMovement - 1;
+		
+		/* If there are steps to move with the current velocity */
+		if (changeMovement > 0)
+		{
+			/* The new position values */
+			let newXPos = xPos + xVel;
+			let newYPos = yPos + yVel;
+			let fieldType = gameField.getFieldType(newXPos, newYPos);
+			
+			/* If the enemy can move to the new postion, then move */
+			if (validFieldTypeToMove(fieldType))
+			{
+				/* The old position is empty */
+				do gameField.setFieldType(xPos, yPos, 0);
+				do Screen.setColor(false);
+				/* Draw white block on old postion */
+				do Screen.drawRectangle((Global.getXTranslation() + xPos) * 16, (Global.getYTranslation() + yPos) * 16, (Global.getXTranslation() + xPos) * 16 + 15, (Global.getYTranslation() + yPos) * 16 + 15);
+				
+				/* Set new postion and draw enemy */
+				let xPos = newXPos;
+				let yPos = newYPos;
+				if (fieldType = 0)
+				{
+					do gameField.setFieldType(xPos, yPos, 5);
+				}
+				do draw();
+			}
+			/* If the enemy cannot move to the new postion, then change the velocity */
+			else
+			{
+				do changeMovingDirection(gameField);
+			}
+		}
+		/* Find a new velocity (which results in new direction)
+		   This is added so that the enemy is more unpredictable, it can change its direction in a random moment
+		   Without this it would move in one direction until it comes to the field boundary or a block.*/
+		else
+		{
+			/* Get new velocity */
+			do changeMovingDirection(gameField);
+			let changeMovement = Global.modulo(Global.getRandomNumber(), 7) + 3;
+		}
+		/* When moved to new postion set the field type */
+		do gameField.setFieldType(xPos, yPos, 5);
+		
+		return;
+	}
+	
+	/* Method which sets a new velocity for the enemy */
+	method void changeMovingDirection(GameField gameField)
+	{
+		var int fieldType, newXPos, newYPos, newDirection, i;
+		
+		/* Get the index of new moving direction */
+		let newDirection = Global.modulo(Global.getRandomNumber(), 4);
+		
+		let i = 0;
+		
+		/* Run the loop until the new moving direction is found or when all possibilites are checked (up, right, down, left)*/
+		while (i < 4)
+		{
+			/* Set new velocity*/
+			let xVel = Global.getXVelocity(newDirection);
+			let yVel = Global.getYVelocity(newDirection);
+			
+			/* New postion */
+			let newXPos = xPos + xVel;
+			let newYPos = yPos + yVel;
+			let fieldType = gameField.getFieldType(newXPos, newYPos);
+			
+			/* If the enemy can move to the new postion, then move it */
+			if (validFieldTypeToMove(fieldType))
+			{
+				/* Condition to break the while loop */
+				let i = 4;
+				/* Set old position field to 0 and draw a white rectangle */
+				do gameField.setFieldType(xPos, yPos, 0);
+				do Screen.setColor(false);
+				do Screen.drawRectangle((Global.getXTranslation() + xPos) * 16, (Global.getYTranslation() + yPos) * 16, (Global.getXTranslation() + xPos) * 16 + 15, (Global.getYTranslation() + yPos) * 16 + 15);
+				
+				/* Set new position and draw enemy */
+				let xPos = newXPos;
+				let yPos = newYPos;
+				if (fieldType = 0)
+				{
+					do gameField.setFieldType(xPos, yPos, 5);
+				}
+				do draw();
+			}
+			/* Check an another direction if the current is also invalid */
+			let newDirection = newDirection + 1;
+			let newDirection = Global.modulo(newDirection, 4);
+			let i = i + 1;
+		}
+		
+		return;
+	}
+	
+	/* Check if the enemy can move to the given field type */
+	method bool validFieldTypeToMove(int fieldType)
+	{
+		/* Can move to empty field (0) or flame (4), NOTE: the field with player is always 0, so it can move to the player's field*/
+		if ((fieldType = 0) | (fieldType = 4))
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	/* Method that check if the enemy is positioned at the door, if yes the the door needs to be drawn again */
+	method bool checkIfDoorsShouldBeDrawn(Door door)
+	{
+		if ((door.getXPos() = xPos) & (door.getYPos() = yPos))
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	/* Draw the enemy */
+	method void draw()
+	{
+		var int location, memAddress;
+		let location = Global.getDrawLocation(xPos, yPos);
+
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 960);
+		do Memory.poke(memAddress+64, 3120);
+		do Memory.poke(memAddress+96, 4104);
+		do Memory.poke(memAddress+128, 8196);
+		do Memory.poke(memAddress+160, 8772);
+		do Memory.poke(memAddress+192, 8196);
+		do Memory.poke(memAddress+224, 8196);
+		do Memory.poke(memAddress+256, 9156);
+		do Memory.poke(memAddress+288, 4104);
+		do Memory.poke(memAddress+320, 3120);
+		do Memory.poke(memAddress+352, 960);
+		do Memory.poke(memAddress+384, 2016);
+		do Memory.poke(memAddress+416, 4080);
+		do Memory.poke(memAddress+448, 8184);
+		do Memory.poke(memAddress+480, 0);
+
+		return;
+	}
+}

@@ -1,0 +1,201 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Screen.jack
+
+/**
+ * A library of functions for displaying graphics on the screen.
+ * The Hack physical screen consists of 512 rows (indexed 0..511, top to bottom)
+ * of 256 pixels each (indexed 0..255, left to right). The top left pixel on
+ * the screen is indexed (0,0).
+ */
+class Screen {
+    static Array twos;
+    static int color;
+    /** Initializes the Screen. */
+    function void init() {
+      var int counter, power;
+      let power = 1;
+      let counter = 0;
+
+      //powers of two
+      let twos = Array.new(16);
+      while(counter<16){
+        let twos[counter] = power;
+        let power = power + power;
+        let counter = counter + 1;
+        }
+      do Screen.setColor(true);
+      return;
+    }
+
+    /** Erases the entire screen. */
+    function void clearScreen() {
+      var int cpointer;
+      let cpointer = 16384;
+      while(cpointer<24576){
+        do Memory.poke(cpointer, 0);
+        let cpointer = cpointer + 1;
+      }
+    return;
+    }
+
+    /** Sets the current color, to be used for all subsequent drawXXX commands.
+     *  Black is represented by true, white by false. */
+    function void setColor(boolean b) {
+      if (b){
+        let color = -1;
+      }
+      else {
+        let color = 0;
+      }
+    return;
+    }
+
+    /** Draws the (x,y) pixel, using the current color. */
+    function void drawPixel(int x, int y) {
+      var int wordaddress, pixelinword, data,increment;
+      //do Screen.setColor(true);
+      let wordaddress = 16384 + (y*32) + (x/16);
+      let pixelinword = x - ((x/16)*16);
+      if (~(Screen.isbitset(wordaddress, pixelinword))){
+        let data = Memory.peek(wordaddress);
+        let increment = twos[pixelinword];
+        if(~color){
+          let increment = 0;
+        }
+        let data = data + increment;
+        do Memory.poke(wordaddress, data);
+      }
+      else{
+        let data = Memory.peek(wordaddress);
+        let increment = twos[pixelinword];
+        if(~color){
+          let increment = - twos[pixelinword];
+        }
+        let data = data + increment;
+        do Memory.poke(wordaddress, data);
+      }
+
+      return;
+    }
+
+
+    /** Draws a line from pixel (x1,y1) to pixel (x2,y2), using the current color. */
+    function void drawLine(int x1, int y1, int x2, int y2) {
+      var int a, b, dx, dy, diff,ord1,ord2,x,y,swap,ab1,ab2;
+      let a = 0;
+      let b = 0;
+      let dx = x2 - x1;
+      let dy = y2 - y1;
+      if ((x2>x1)&(y2<y1)){
+        while ((~(a>dx))&(~(b<dy))){
+          do Screen.drawPixel(x1+a,y1+b);
+            let diff = (b*dx)-(a*dy);
+            if (diff > 0) {
+              let b = b - 1;
+            }
+            else {
+              let a = a + 1;
+            }
+        }
+      }
+      // switch points 1, 2
+      if ((x2<x1)&(y2>y1)){
+        do Screen.drawLine(x2,y2,x1,y1);
+      }
+
+      if ((x2>x1)&(y2>y1)){
+        while ((~(a>dx))&(~(b>dy))){
+          do Screen.drawPixel(x1+a,y1+b);
+            let diff = (b*dx)-(a*dy);
+            if (diff < 0) {
+              let b = b + 1;
+            }
+            else {
+              let a = a + 1;
+            }
+        }
+      }
+      // switch points 1, 2
+      if ((x2<x1)&(y2<y1)){
+        do Screen.drawLine(x2,y2,x1,y1);
+      }
+
+      //case horizontal line
+      if(y1=y2){
+        if(x2<x1){
+          let ab1 = x2;
+          let ab2 = x1;
+        }
+        else{
+          let ab1 = x1;
+          let ab2 = x2;
+        }
+        while(~((ab1+a)>ab2)){
+          do Screen.drawPixel(ab1+a,y1);
+          let a = a+1;
+        }
+
+      }
+      //case vertical line
+      if (x1=x2){
+        if (y1>y2){
+          let ord1 = y2; // будемо вести лінію з меншої ординати до більшої
+          let ord2 = y1;
+        }
+        else{
+          let ord1 = y1;
+          let ord2 = y2;
+        }
+
+      while(~((ord1+b)>ord2)){
+        do Screen.drawPixel(x1,ord1+b);
+        let b = b+1;
+      }
+
+      }// end of vertical line
+
+      return;
+    }
+
+
+    /** Draws a filled rectangle whose top left corner is (x1, y1)
+     * and bottom right corner is (x2,y2), using the current color. */
+    function void drawRectangle(int x1, int y1, int x2, int y2) {
+      var int ylim, x,y;
+      let ylim = y2+1;
+      let y = y1;
+      while(y<ylim){
+        do Screen.drawLine(x1,y,x2,y);
+        let y = y+1;
+      }
+      return;
+    }
+
+    /** Draws a filled circle of radius r<=181 around (x,y), using the current color. */
+    function void drawCircle(int x, int y, int r) {
+      var int dy, dx;
+      let dy = r;
+      while(dy>(-r-1)){
+        let dx = Math.sqrt((r*r) - (dy*dy));
+        do Screen.drawLine(x-dx,y-dy,x+dx,y-dy);
+        let dy = dy - 1;
+      }
+      return;
+    }
+
+    function bool isbitset(int addr, int bit){
+      var int data, shifted;
+      let data = Memory.peek(addr);
+      let shifted = data * twos[15-bit];
+      if (shifted<0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+
+
+}

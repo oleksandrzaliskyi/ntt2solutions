@@ -1,0 +1,54 @@
+class Bullet {
+  field int x,y, dx,dy, radius, speed, active, side;
+//
+  constructor Bullet new(int Ax,int Ay, int deltax, int deltay, int power,int gameside){
+  let x = Ax;
+  let y = Ay;
+  let dx = deltax;
+  let dy = deltay;
+  let radius = 3;
+  let speed = 5;
+  let active = 1;
+  let side = gameside;  // 0 for our bullets, 1 for enemy bullets
+  return this;
+  }
+
+  method void dispose() {
+  do Memory.deAlloc(this);
+  return;
+  }
+
+  method void draw(){
+    do Screen.setColor(true);
+    do Screen.drawCircle(x, y, radius);
+    return;
+  }
+
+  method int getActive() {
+    return active;
+  }
+
+  method int getx(){
+    return x;
+  }
+
+  method int gety(){
+    return y;
+  }
+  method void moveStep(){
+    var int xnew,ynew;
+    let xnew = x+(speed*dx);
+    let ynew = y+(speed*dy);
+
+    if (((xnew-radius)>2) &((xnew+radius)<509) & ((ynew-radius)>2)& ((ynew+radius)<253)){
+        let x = xnew;
+        let y = ynew;
+      }
+
+    if (((xnew+radius)>508) | ((ynew+radius)>252)|((xnew-radius)<3) | ((ynew-radius)<3)){
+        let active = 0;
+        //do dispose();
+      }
+    return;
+    }
+}

@@ -1,0 +1,153 @@
+class Game {
+	field char spaceKey, currKey;
+	field boolean start, lastPipeReady, isColliding, newPipeCreated;
+	field int pipeIndex, pipeCount, i, playerX, playerY; 
+
+	field Pipe pipe;
+	field Array pipes;
+	field Player player;
+	
+  static int randomSeed;
+	
+	/* Setup the initial values for game variable and objects */
+	constructor Game new(){
+		let spaceKey = 32;
+		let pipeCount = 5;
+		let pipes = Array.new(pipeCount);
+		let randomSeed = 10;
+		return this;
+	}
+
+	method void initializeGame() {
+		let start = false;
+		let pipeIndex = 0;
+		let pipes[0] = Pipe.new(491);
+		let currKey = 0;
+		let player = Player.new(50, 100);
+		return;
+	}
+	/* Wait on startScreen until user input */
+	method void startScreen(){
+		var char currKey;
+		let currKey = 0;
+		do Output.moveCursor(5,26);
+		do Output.printString("Flappy square");
+		do Output.moveCursor(8,22);
+		do Output.printString("Press Space to Start flying");
+		do Output.moveCursor(10,5);
+		do Output.printString("Goal is to go through as many pipes without colliding");
+		do Output.moveCursor(12,22);
+		do Output.printString("Press Q to exit game");
+		//32 = ASCII_SPACE
+		while(~(currKey = 32)){
+			if (currKey = 81) {
+				return;
+			}
+			let currKey = Keyboard.keyPressed();
+		}
+		return;
+	}
+
+	method void run(){
+		do initializeGame();
+		while(true) {
+			/* Check which key is pressed
+				If "space" is pressed, move the player up
+				if "q" is pressed, clear the memory of objects and quit the game
+				if anything else move the player down
+			*/
+			let currKey = Keyboard.keyPressed();
+			// quit if q is pressed
+			if (currKey = 81) {
+				return;
+			}
+			if (currKey = spaceKey) {
+				do player.moveUp();
+			}
+			else {
+				do player.moveDown();
+			}
+			
+			// create five pipes
+			if(pipeIndex < (pipeCount - 1)) {
+				let pipe = pipes[pipeIndex];
+				let lastPipeReady = pipe.createNewPipe();
+				if(lastPipeReady) {
+					let pipeIndex = pipeIndex + 1;
+					let pipes[pipeIndex] = Pipe.new(491);
+					let pipe = pipes[pipeIndex];
+					do pipe.setSeed(randomSeed);
+					do pipe.newPipeHeight();
+				}
+			}
+
+			/* Game logic checking for collisions */
+			let playerX = player.getXLocation();
+			let playerY = player.getYLocation();
+			let i = 0;
+			while (i < (pipeIndex + 1)) {
+				let pipe = pipes[i];
+				let newPipeCreated = pipe.movePipe();
+				if(newPipeCreated) {
+					do player.incrementScore(1);
+				}	
+				let isColliding = pipe.isColliding(playerX, playerY);
+				if(isColliding) {
+					do endGame();
+					return;
+				}
+				let i = i + 1;
+			}
+
+			/* updateRandomSeed */ 
+			if (randomSeed < 50) {
+				let randomSeed = randomSeed + 1;
+			}
+			else {
+				let randomSeed = 1;
+			}
+
+			do player.drawPlayer();
+			do Sys.wait(70);
+			do Screen.clearScreen();
+		}
+
+		return;
+	}
+
+	/* End game screen */
+	method void endGame() {
+		do Screen.clearScreen();
+    do Output.moveCursor(10,19);
+    do Output.printString("Game Over! Your score was:");
+    do Output.moveCursor(11,30);
+    do Output.printInt(player.getScore());
+
+    //Give the player some time to read the message
+    do Sys.wait(2000);
+
+		// Clear screen and go back to start
+    do Screen.clearScreen();
+		do startScreen();
+		do initializeGame();
+		do run();
+    return;
+	}
+
+	function int getSteps(){
+    return randomSeed;
+  }
+
+	// Clear out memory used by game object and others created by it.
+	method void dispose() {
+		do player.dispose();
+		let i = 0;
+		while(i < pipeCount - 1 ) {
+			let pipe = pipes[i];
+			do pipe.dispose();
+			let i = i + 1;
+		}
+		do Memory.deAlloc(this);
+		return;
+	}
+}

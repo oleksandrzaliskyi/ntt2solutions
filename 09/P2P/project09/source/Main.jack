@@ -1,0 +1,34 @@
+/** The main class with the main function that starts the game */
+class Main
+{
+	/* Main funtion */
+	function void main()
+	{
+		/* The game object and game status */
+		var Game game;
+		var int gameStatus;
+		
+		let gameStatus = 0;
+		
+		/* Initialize global variables and show intro with instructions */
+		do Global.initialize();
+		do Global.intro();
+		
+		/* Status 0 means that the game is not over yet */
+		while (gameStatus = 0)
+		{
+			/* Create new game object and show stage intro */
+			let game = Game.new();
+			do Global.printStageIntro();
+			
+			/* Run the new game (stage)*/
+			do game.run();
+			let gameStatus = game.getGameStatus();
+			do game.dispose();
+		}
+		/* Since the status is not 0 anymore print game over screen */
+		do Global.printGameOverScreen(gameStatus);
+
+		return;
+	}
+}

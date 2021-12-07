@@ -1,0 +1,703 @@
+function Player.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push constant 0
+pop this 1
+push constant 0
+pop this 0
+push pointer 0
+return
+function Player.movePlayer 0
+push argument 0
+pop pointer 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push argument 1
+push constant 130
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push argument 2
+push this 0
+push constant 1
+sub
+push this 1
+call GameField.getFieldType 3
+call Player.validFieldTypeToMove 2
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push constant 1
+sub
+pop this 0
+label IF_FALSE1
+push pointer 0
+call Player.drawLeft 1
+pop temp 0
+label IF_FALSE0
+push argument 1
+push constant 131
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+push argument 2
+push this 0
+push this 1
+push constant 1
+sub
+call GameField.getFieldType 3
+call Player.validFieldTypeToMove 2
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 1
+push constant 1
+sub
+pop this 1
+label IF_FALSE3
+push pointer 0
+call Player.drawBack 1
+pop temp 0
+label IF_FALSE2
+push argument 1
+push constant 132
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+push argument 2
+push this 0
+push constant 1
+add
+push this 1
+call GameField.getFieldType 3
+call Player.validFieldTypeToMove 2
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push constant 1
+add
+pop this 0
+label IF_FALSE5
+push pointer 0
+call Player.drawRight 1
+pop temp 0
+label IF_FALSE4
+push argument 1
+push constant 133
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push pointer 0
+push argument 2
+push this 0
+push this 1
+push constant 1
+add
+call GameField.getFieldType 3
+call Player.validFieldTypeToMove 2
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 1
+push constant 1
+add
+pop this 1
+label IF_FALSE7
+push pointer 0
+call Player.drawFront 1
+pop temp 0
+label IF_FALSE6
+push constant 0
+return
+function Player.getXPos 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Player.getYPos 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Player.validFieldTypeToMove 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+eq
+push argument 1
+push constant 4
+eq
+or
+push argument 1
+push constant 5
+eq
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
+return
+function Player.drawFront 2
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Global.getDrawLocation 2
+pop local 1
+push constant 16384
+push local 1
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 6156
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8194
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8738
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8738
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8194
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 6156
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 30735
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 20485
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 24573
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 28679
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 2504
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1584
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 3640
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Player.drawBack 2
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Global.getDrawLocation 2
+pop local 1
+push constant 16384
+push local 1
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 6156
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 10226
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8194
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8194
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8194
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 6156
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 30735
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 20485
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 24573
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 28679
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 2504
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1584
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 3640
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Player.drawLeft 2
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Global.getDrawLocation 2
+pop local 1
+push constant 16384
+push local 1
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 6156
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8194
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8202
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8202
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8194
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 6156
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 2376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 4420
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 8060
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 4420
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 2504
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1016
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Player.drawRight 2
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Global.getDrawLocation 2
+pop local 1
+push constant 16384
+push local 1
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 6156
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8194
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 10242
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 10242
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8194
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 6156
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 2376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 4420
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 8060
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 4420
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 2504
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 2032
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 4064
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Player.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

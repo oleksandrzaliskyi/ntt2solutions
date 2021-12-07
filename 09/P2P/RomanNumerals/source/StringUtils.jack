@@ -1,0 +1,24 @@
+/** Utility class for string manipulation. */
+
+class StringUtils {
+   function String concatenate(String s1, String s2) {
+      var String s3;
+      var int i;
+
+      let s3 = String.new(32);
+
+      let i = 0;
+      while (i < s1.length()) {
+          do s3.appendChar(s1.charAt(i));
+          let i = i + 1;
+      }
+
+      let i = 0;
+      while (i < s2.length()) {
+          do s3.appendChar(s2.charAt(i));
+          let i = i + 1;
+      }
+
+      return s3;
+   }
+}

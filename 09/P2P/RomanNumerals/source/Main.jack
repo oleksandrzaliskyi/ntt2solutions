@@ -1,0 +1,51 @@
+/**
+
+RomanNumerals program.
+
+Allows user to input two roman numbers and display their sum as
+a roman number.
+
+*/
+
+class Main {
+    function void main() {
+        var String n1, n2, n3;
+        var int d1, d2, d3;
+        var RomanConverter converter;
+        let converter = RomanConverter.new();
+
+        do Output.printString("Enter two roman numbers to add.");
+        do Output.println();
+        do Output.println();
+
+        let n1 = Keyboard.readLine("First number: ");
+
+        if(~(converter.isValidNumber(n1))) {
+            do Output.println();
+            do Output.printString("Invalid roman number.");
+            return;
+        }
+
+        let n2 = Keyboard.readLine("Second number: ");
+
+       if(~(converter.isValidNumber(n2))) {
+            do Output.println();
+            do Output.printString("Invalid roman number.");
+            return;
+        }
+
+        let d1 = converter.toDecimal(n1);
+        let d2 = converter.toDecimal(n2);
+        let d3 = d1 + d2;
+        let n3 = converter.toRoman(d3);
+
+        do Output.println();
+        do Output.println();
+        do Output.printString(n1);
+        do Output.printString(" + ");
+        do Output.printString(n2);
+        do Output.printString(" = ");
+        do Output.printString(n3);
+        return;
+   }
+}

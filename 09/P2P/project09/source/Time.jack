@@ -1,0 +1,68 @@
+/** Class that implements a simple timer */
+class Time
+{
+	/* The time and centiseconds. The loop in Game.jack has a Sys.wait(10) on line 135, so the name centiseconds is used */
+	field int time, centiseconds;
+	
+	/* Construct timer */
+	constructor Time new()
+	{
+		let time = 100;
+		let centiseconds = 100;
+		
+		return this;
+	}
+	
+	/* Decrement time */
+	method void decrementTime()
+	{
+		let centiseconds = centiseconds - 1;
+		/* If centiseconds < 1 then decrease time variable and refresh the time on screen */
+		if (centiseconds < 1)
+		{
+			let time = time - 1;
+			let centiseconds = 100;
+			do draw();
+		}
+
+		return;
+	}
+	
+	/* Get the current time */
+	method int getTime()
+	{
+		return time;
+	}
+	
+	/* Draw current time on screen */
+	method void draw()
+	{
+		do Output.moveCursor(1, 12);
+		do Output.printString("Time: ");
+
+		/* Format the time a little bit for a nicer output */
+		if (time < 10)
+		{
+		    /* Use 2 spaces */
+			do Output.printString("  ");
+		}
+		
+		if ((time > 9) & (time < 100))
+		{
+			/* Use 1 spaces */
+			do Output.printString(" ");
+		}
+		
+		do Output.printInt(time);
+		
+		return;
+	}
+	
+	/* Dispose method */
+	method void dispose()
+	{
+		do Memory.deAlloc(this);
+
+		return;
+	}
+}

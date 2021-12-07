@@ -1,0 +1,11 @@
+class Main{
+	/*Starts up the splash screen and prepares a new instance of the game.*/
+	function void main(){
+		var Game game;
+		let game = Game.new();
+		do game.startScreen();
+		do game.run();
+		do game.dispose();
+		return;
+	}
+}

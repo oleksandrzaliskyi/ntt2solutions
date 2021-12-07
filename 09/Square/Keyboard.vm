@@ -1,0 +1,203 @@
+function Keyboard.init 0
+push constant 0
+return
+function Keyboard.keyPressed 0
+push constant 24576
+call Memory.peek 1
+return
+function Keyboard.readChar 1
+label WHILE_EXP0
+push local 0
+push constant 0
+eq
+not
+if-goto WHILE_END0
+call Keyboard.keyPressed 0
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+label WHILE_EXP1
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto WHILE_END1
+goto WHILE_EXP1
+label WHILE_END1
+push local 0
+call Output.printChar 1
+pop temp 0
+push local 0
+return
+function Keyboard.readLine 2
+push constant 100
+call String.new 1
+pop local 0
+push argument 0
+call Output.printString 1
+pop temp 0
+label WHILE_EXP0
+push local 1
+push constant 128
+eq
+not
+not
+if-goto WHILE_END0
+call Keyboard.readChar 0
+pop local 1
+push local 1
+push constant 128
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call Output.println 0
+pop temp 0
+push local 0
+return
+goto IF_END0
+label IF_FALSE0
+push local 1
+push constant 129
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+call String.eraseLastChar 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push local 0
+push local 1
+call String.appendChar 2
+pop local 0
+label IF_END1
+label IF_END0
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+return
+function Keyboard.readInt 6
+push argument 0
+call Output.printString 1
+pop temp 0
+push constant 0
+pop local 0
+push constant 1
+pop local 4
+push constant 0
+pop local 2
+push constant 7
+call String.new 1
+pop local 5
+label WHILE_EXP0
+push local 1
+push constant 128
+eq
+not
+not
+if-goto WHILE_END0
+call Keyboard.readChar 0
+pop local 1
+push local 1
+push constant 129
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 5
+call String.length 1
+push constant 0
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 5
+call String.eraseLastChar 1
+pop temp 0
+label IF_FALSE1
+goto IF_END0
+label IF_FALSE0
+push local 1
+push constant 47
+gt
+push local 1
+push constant 58
+lt
+and
+push local 1
+push constant 45
+eq
+or
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 5
+push local 1
+call String.appendChar 2
+pop local 5
+push local 5
+call String.length 1
+pop local 2
+goto IF_END2
+label IF_FALSE2
+call Output.backSpace 0
+pop temp 0
+label IF_END2
+label IF_END0
+goto WHILE_EXP0
+label WHILE_END0
+push local 5
+call String.length 1
+pop local 3
+label WHILE_EXP1
+push local 3
+push constant 0
+gt
+not
+if-goto WHILE_END1
+push local 3
+push constant 1
+sub
+pop local 3
+push local 5
+push local 3
+call String.charAt 2
+call Output.printChar 1
+pop temp 0
+push local 5
+push local 3
+call String.charAt 2
+push constant 45
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 1
+neg
+push local 0
+call Math.multiply 2
+pop local 0
+push local 0
+return
+label IF_FALSE3
+push local 0
+push local 5
+push local 3
+call String.charAt 2
+push constant 48
+sub
+push local 4
+call Math.multiply 2
+add
+pop local 0
+push local 4
+push constant 10
+call Math.multiply 2
+pop local 4
+goto WHILE_EXP1
+label WHILE_END1
+push local 0
+return

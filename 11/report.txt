@@ -1,0 +1,2338 @@
+SquareGame.jack
+Main.jack
+Square.jack
+end of tokenizer markup
+end of constructor
+ compileclass at line 2, current token: {'token': 'class', 'type': 'keyword'}
+ compileclass at line 3, current token: {'token': 'SquareGame', 'type': 'identifier'}
+classname = SquareGame
+must be classVarDec
+at line 5, current token: {'token': 'field', 'type': 'keyword'}
+compiling classVarDec
+finished compiling classVarDec
+at line 9, current token: {'token': 'field', 'type': 'keyword'}
+compiling classVarDec
+finished compiling classVarDec
+at line 13, current token: {'token': 'constructor', 'type': 'keyword'}
+compile subroutine
+symbol table created
+self.vmcode = []
+compile local variables
+{'token': 'let', 'type': 'keyword'}
+19
+Symbol Table Output
+segment num  name  type
+
+ should be now beginning of statement at line 19, current token: {'token': 'let', 'type': 'keyword'}
+compiling statements
+at line 19, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 19, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 19, current token: {'token': 'let', 'type': 'keyword'}
+varname = square
+no array option
+compiling expression
+term to compile: {'token': 'Square', 'type': 'identifier'}
+compiling term
+term is subroutineCall
+term issubroutinecall
+subroutinecall met
+at line 22, current token: {'token': 'Square', 'type': 'identifier'}
+compile expressionList
+compiling expression
+term to compile: {'token': '0', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 27, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 27, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': '0', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 29, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 29, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': '30', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 31, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 31, current token: {'token': ')', 'type': 'symbol'}
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 32, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 32, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'square', 'type': 'Square', 'num': 0}
+end compile let statement, curtoken = {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 33, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 33, current token: {'token': 'let', 'type': 'keyword'}
+varname = direction
+no array option
+compiling expression
+term to compile: {'token': '0', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 37, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 37, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'direction', 'type': 'int', 'num': 1}
+end compile let statement, curtoken = {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 38, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 41, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of SquareGame.new
+Symbol Table Output
+segment num  name  type
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function SquareGame.new 0', 'push constant 2', 'call Memory.alloc 1', 'pop pointer 0', 'push constant 0', 'push constant 0', 'push constant 30', 'call Square.new 3', 'pop this 0', 'push constant 0', 'pop this 1', 'push pointer 0', 'return']
+compile local variables
+{'token': 'do', 'type': 'keyword'}
+48
+Symbol Table Output
+segment num  name  type
+argument 0     this     SquareGame
+
+ should be now beginning of statement at line 48, current token: {'token': 'do', 'type': 'keyword'}
+compiling statements
+at line 48, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 48, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 55, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'this', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 61, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 61, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'return', 'type': 'keyword'}
+at line 63, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 63, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 65, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of SquareGame.dispose
+Symbol Table Output
+segment num  name  type
+argument 0     this     SquareGame
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function SquareGame.new 0', 'push constant 2', 'call Memory.alloc 1', 'pop pointer 0', 'push constant 0', 'push constant 0', 'push constant 30', 'call Square.new 3', 'pop this 0', 'push constant 0', 'pop this 1', 'push pointer 0', 'return', '', 'function SquareGame.dispose 0', 'push argument 0', 'pop pointer 0', 'push this 0', 'call Square.dispose 1', 'push argument 0', 'call Memory.deAlloc 1', 'push constant 0', 'return']
+compile local variables
+{'token': 'if', 'type': 'keyword'}
+72
+Symbol Table Output
+segment num  name  type
+argument 0     this     SquareGame
+
+ should be now beginning of statement at line 72, current token: {'token': 'if', 'type': 'keyword'}
+compiling statements
+at line 72, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 72, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'direction', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'direction', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 75, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 76, current token: {'token': '1', 'type': 'integerConstant'}
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 77, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 77, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 79, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 79, current token: {'token': 'do', 'type': 'keyword'}
+end compiling statements
+at line 86, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'if', 'type': 'keyword'}
+at line 87, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 87, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'direction', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'direction', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 90, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 91, current token: {'token': '2', 'type': 'integerConstant'}
+term to compile: {'token': '2', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 92, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 92, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 94, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 94, current token: {'token': 'do', 'type': 'keyword'}
+end compiling statements
+at line 101, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'if', 'type': 'keyword'}
+at line 102, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 102, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'direction', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'direction', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 105, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 106, current token: {'token': '3', 'type': 'integerConstant'}
+term to compile: {'token': '3', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 107, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 107, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 109, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 109, current token: {'token': 'do', 'type': 'keyword'}
+end compiling statements
+at line 116, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'if', 'type': 'keyword'}
+at line 117, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 117, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'direction', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'direction', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 120, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 121, current token: {'token': '4', 'type': 'integerConstant'}
+term to compile: {'token': '4', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 122, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 122, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 124, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 124, current token: {'token': 'do', 'type': 'keyword'}
+end compiling statements
+at line 131, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'do', 'type': 'keyword'}
+at line 132, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 132, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': '5', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 138, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 138, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'return', 'type': 'keyword'}
+at line 140, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 140, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 142, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of SquareGame.moveSquare
+Symbol Table Output
+segment num  name  type
+argument 0     this     SquareGame
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function SquareGame.new 0', 'push constant 2', 'call Memory.alloc 1', 'pop pointer 0', 'push constant 0', 'push constant 0', 'push constant 30', 'call Square.new 3', 'pop this 0', 'push constant 0', 'pop this 1', 'push pointer 0', 'return', '', 'function SquareGame.dispose 0', 'push argument 0', 'pop pointer 0', 'push this 0', 'call Square.dispose 1', 'push argument 0', 'call Memory.deAlloc 1', 'push constant 0', 'return', '', 'function SquareGame.moveSquare 0', 'push argument 0', 'pop pointer 0', 'push this 1', 'push constant 1', 'eq', 'not', 'if-goto if0label1', 'push this 0', 'call Square.moveUp 1', 'goto if0label2', 'label if0label1', 'label if0label2', 'push this 1', 'push constant 2', 'eq', 'not', 'if-goto if1label1', 'push this 0', 'call Square.moveDown 1', 'goto if1label2', 'label if1label1', 'label if1label2', 'push this 1', 'push constant 3', 'eq', 'not', 'if-goto if2label1', 'push this 0', 'call Square.moveLeft 1', 'goto if2label2', 'label if2label1', 'label if2label2', 'push this 1', 'push constant 4', 'eq', 'not', 'if-goto if3label1', 'push this 0', 'call Square.moveRight 1', 'goto if3label2', 'label if3label1', 'label if3label2', 'push constant 5', 'call Sys.wait 1', 'push constant 0', 'return']
+compile local variables
+{'token': 'var', 'type': 'keyword'}
+149
+Symbol Table Output
+segment num  name  type
+argument 0     this     SquareGame
+local 0     key     char
+local 1     exit     boolean
+
+ should be now beginning of statement at line 157, current token: {'token': 'let', 'type': 'keyword'}
+compiling statements
+at line 157, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 157, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 157, current token: {'token': 'let', 'type': 'keyword'}
+varname = exit
+no array option
+compiling expression
+term to compile: {'token': 'false', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 161, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 161, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'local', 'name': 'exit', 'type': 'boolean', 'num': 1}
+end compile let statement, curtoken = {'token': 'while', 'type': 'keyword'}
+while statement met
+at line 162, current token: {'token': 'while', 'type': 'keyword'}
+ compile while statement at line 162, current token: {'token': 'while', 'type': 'keyword'}
+whilepaircount = 0
+compiling expression
+term to compile: {'token': '~', 'type': 'symbol'}
+compiling term
+term is unaryop term
+term unaryop term
+compiling term
+term is varName
+term varname, varname = {'token': 'exit', 'type': 'identifier'}
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 166, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 166, current token: {'token': ')', 'type': 'symbol'}
+inside while after neg - {'token': '{', 'type': 'symbol'}
+before statements
+{'token': 'while', 'type': 'keyword'}
+compiling statements
+at line 168, current token: {'token': 'while', 'type': 'keyword'}
+while statement met
+at line 168, current token: {'token': 'while', 'type': 'keyword'}
+ compile while statement at line 168, current token: {'token': 'while', 'type': 'keyword'}
+whilepaircount = 2
+compiling expression
+term to compile: {'token': 'key', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'key', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 171, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 172, current token: {'token': '0', 'type': 'integerConstant'}
+term to compile: {'token': '0', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 173, current token: {'token': ')', 'type': 'symbol'}
+inside while after neg - {'token': '{', 'type': 'symbol'}
+before statements
+{'token': 'let', 'type': 'keyword'}
+compiling statements
+at line 175, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 175, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 175, current token: {'token': 'let', 'type': 'keyword'}
+varname = key
+no array option
+compiling expression
+term to compile: {'token': 'Keyboard', 'type': 'identifier'}
+compiling term
+term is subroutineCall
+term issubroutinecall
+subroutinecall met
+at line 178, current token: {'token': 'Keyboard', 'type': 'identifier'}
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 183, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 183, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'local', 'name': 'key', 'type': 'char', 'num': 0}
+end compile let statement, curtoken = {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 184, current token: {'token': 'do', 'type': 'keyword'}
+end compiling statements
+at line 189, current token: {'token': '}', 'type': 'symbol'}
+while statement has been compiled, ctok={'token': 'do', 'type': 'keyword'}
+at line 190, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 190, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': '5', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 196, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 196, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'if', 'type': 'keyword'}
+at line 198, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 198, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'key', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'key', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 201, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 202, current token: {'token': '81', 'type': 'integerConstant'}
+term to compile: {'token': '81', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 203, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 203, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 205, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 205, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 205, current token: {'token': 'let', 'type': 'keyword'}
+varname = exit
+no array option
+compiling expression
+term to compile: {'token': 'true', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 209, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 209, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'local', 'name': 'exit', 'type': 'boolean', 'num': 1}
+end compile let statement, curtoken = {'token': '}', 'type': 'symbol'}
+end compiling statements
+at line 210, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'if', 'type': 'keyword'}
+at line 211, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 211, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'key', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'key', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 214, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 215, current token: {'token': '90', 'type': 'integerConstant'}
+term to compile: {'token': '90', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 216, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 216, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 218, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 218, current token: {'token': 'do', 'type': 'keyword'}
+end compiling statements
+at line 225, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'if', 'type': 'keyword'}
+at line 226, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 226, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'key', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'key', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 229, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 230, current token: {'token': '88', 'type': 'integerConstant'}
+term to compile: {'token': '88', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 231, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 231, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 233, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 233, current token: {'token': 'do', 'type': 'keyword'}
+end compiling statements
+at line 240, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'if', 'type': 'keyword'}
+at line 241, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 241, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'key', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'key', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 244, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 245, current token: {'token': '131', 'type': 'integerConstant'}
+term to compile: {'token': '131', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 246, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 246, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 248, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 248, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 248, current token: {'token': 'let', 'type': 'keyword'}
+varname = direction
+no array option
+compiling expression
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 252, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 252, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'direction', 'type': 'int', 'num': 1}
+end compile let statement, curtoken = {'token': '}', 'type': 'symbol'}
+end compiling statements
+at line 253, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'if', 'type': 'keyword'}
+at line 254, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 254, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'key', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'key', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 257, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 258, current token: {'token': '133', 'type': 'integerConstant'}
+term to compile: {'token': '133', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 259, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 259, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 261, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 261, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 261, current token: {'token': 'let', 'type': 'keyword'}
+varname = direction
+no array option
+compiling expression
+term to compile: {'token': '2', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 265, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 265, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'direction', 'type': 'int', 'num': 1}
+end compile let statement, curtoken = {'token': '}', 'type': 'symbol'}
+end compiling statements
+at line 266, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'if', 'type': 'keyword'}
+at line 267, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 267, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'key', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'key', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 270, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 271, current token: {'token': '130', 'type': 'integerConstant'}
+term to compile: {'token': '130', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 272, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 272, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 274, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 274, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 274, current token: {'token': 'let', 'type': 'keyword'}
+varname = direction
+no array option
+compiling expression
+term to compile: {'token': '3', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 278, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 278, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'direction', 'type': 'int', 'num': 1}
+end compile let statement, curtoken = {'token': '}', 'type': 'symbol'}
+end compiling statements
+at line 279, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'if', 'type': 'keyword'}
+at line 280, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 280, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'key', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'key', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 283, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 284, current token: {'token': '132', 'type': 'integerConstant'}
+term to compile: {'token': '132', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 285, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 285, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 287, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 287, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 287, current token: {'token': 'let', 'type': 'keyword'}
+varname = direction
+no array option
+compiling expression
+term to compile: {'token': '4', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 291, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 291, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'direction', 'type': 'int', 'num': 1}
+end compile let statement, curtoken = {'token': '}', 'type': 'symbol'}
+end compiling statements
+at line 292, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'while', 'type': 'keyword'}
+at line 293, current token: {'token': 'while', 'type': 'keyword'}
+while statement met
+at line 293, current token: {'token': 'while', 'type': 'keyword'}
+ compile while statement at line 293, current token: {'token': 'while', 'type': 'keyword'}
+whilepaircount = 4
+compiling expression
+term to compile: {'token': '~', 'type': 'symbol'}
+compiling term
+term is unaryop term
+term unaryop term
+compiling term
+term is exp in parentheses
+term expression in parentheses
+compiling expression
+term to compile: {'token': 'key', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'key', 'type': 'identifier'}
+first term compiled: now at {'token': '=', 'type': 'symbol'}
+at line 298, current token: {'token': '=', 'type': 'symbol'}
+= opsymbol met while compile expression
+ in while cycle of expression compilation at line 299, current token: {'token': '0', 'type': 'integerConstant'}
+term to compile: {'token': '0', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 300, current token: {'token': ')', 'type': 'symbol'}
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 301, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 301, current token: {'token': ')', 'type': 'symbol'}
+inside while after neg - {'token': '{', 'type': 'symbol'}
+before statements
+{'token': 'let', 'type': 'keyword'}
+compiling statements
+at line 303, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 303, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 303, current token: {'token': 'let', 'type': 'keyword'}
+varname = key
+no array option
+compiling expression
+term to compile: {'token': 'Keyboard', 'type': 'identifier'}
+compiling term
+term is subroutineCall
+term issubroutinecall
+subroutinecall met
+at line 306, current token: {'token': 'Keyboard', 'type': 'identifier'}
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 311, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 311, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'local', 'name': 'key', 'type': 'char', 'num': 0}
+end compile let statement, curtoken = {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 312, current token: {'token': 'do', 'type': 'keyword'}
+end compiling statements
+at line 317, current token: {'token': '}', 'type': 'symbol'}
+while statement has been compiled, ctok={'token': '}', 'type': 'symbol'}
+at line 318, current token: {'token': '}', 'type': 'symbol'}
+end compiling statements
+at line 318, current token: {'token': '}', 'type': 'symbol'}
+while statement has been compiled, ctok={'token': 'return', 'type': 'keyword'}
+at line 319, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 319, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 321, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': '}', 'type': 'symbol'}
+Symbol table of SquareGame.run
+Symbol Table Output
+segment num  name  type
+argument 0     this     SquareGame
+local 0     key     char
+local 1     exit     boolean
+
+***************************************
+virtual machine code has been generated
+185 lines of vm code
+***************************************
+class symbol table for SquareGame
+Symbol Table Output
+segment num  name  type
+this 0     square     Square
+this 1     direction     int
+
+end of tokenizer markup
+end of constructor
+ compileclass at line 2, current token: {'token': 'class', 'type': 'keyword'}
+ compileclass at line 3, current token: {'token': 'Main', 'type': 'identifier'}
+classname = Main
+must be classVarDec
+at line 5, current token: {'token': 'function', 'type': 'keyword'}
+compile subroutine
+symbol table created
+self.vmcode = []
+compile local variables
+{'token': 'var', 'type': 'keyword'}
+11
+Symbol Table Output
+segment num  name  type
+local 0     game     SquareGame
+
+ should be now beginning of statement at line 15, current token: {'token': 'let', 'type': 'keyword'}
+compiling statements
+at line 15, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 15, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 15, current token: {'token': 'let', 'type': 'keyword'}
+varname = game
+no array option
+compiling expression
+term to compile: {'token': 'SquareGame', 'type': 'identifier'}
+compiling term
+term is subroutineCall
+term issubroutinecall
+subroutinecall met
+at line 18, current token: {'token': 'SquareGame', 'type': 'identifier'}
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 23, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 23, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'local', 'name': 'game', 'type': 'SquareGame', 'num': 0}
+end compile let statement, curtoken = {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 24, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 31, current token: {'token': 'do', 'type': 'keyword'}
+return statement met
+at line 38, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 40, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': '}', 'type': 'symbol'}
+Symbol table of Main.main
+Symbol Table Output
+segment num  name  type
+local 0     game     SquareGame
+
+***************************************
+virtual machine code has been generated
+10 lines of vm code
+***************************************
+class symbol table for Main
+Symbol Table Output
+segment num  name  type
+
+end of tokenizer markup
+end of constructor
+ compileclass at line 2, current token: {'token': 'class', 'type': 'keyword'}
+ compileclass at line 3, current token: {'token': 'Square', 'type': 'identifier'}
+classname = Square
+must be classVarDec
+at line 5, current token: {'token': 'field', 'type': 'keyword'}
+compiling classVarDec
+finished compiling classVarDec
+at line 11, current token: {'token': 'field', 'type': 'keyword'}
+compiling classVarDec
+finished compiling classVarDec
+at line 15, current token: {'token': 'constructor', 'type': 'keyword'}
+compile subroutine
+symbol table created
+self.vmcode = []
+compile local variables
+{'token': 'let', 'type': 'keyword'}
+29
+Symbol Table Output
+segment num  name  type
+argument 0     Ax     int
+argument 1     Ay     int
+argument 2     Asize     int
+
+ should be now beginning of statement at line 29, current token: {'token': 'let', 'type': 'keyword'}
+compiling statements
+at line 29, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 29, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 29, current token: {'token': 'let', 'type': 'keyword'}
+varname = x
+no array option
+compiling expression
+term to compile: {'token': 'Ax', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'Ax', 'type': 'identifier'}
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 33, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 33, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'x', 'type': 'int', 'num': 0}
+end compile let statement, curtoken = {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 34, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 34, current token: {'token': 'let', 'type': 'keyword'}
+varname = y
+no array option
+compiling expression
+term to compile: {'token': 'Ay', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'Ay', 'type': 'identifier'}
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 38, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 38, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'y', 'type': 'int', 'num': 1}
+end compile let statement, curtoken = {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 39, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 39, current token: {'token': 'let', 'type': 'keyword'}
+varname = size
+no array option
+compiling expression
+term to compile: {'token': 'Asize', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'Asize', 'type': 'identifier'}
+first term compiled: now at {'token': ';', 'type': 'symbol'}
+at line 43, current token: {'token': ';', 'type': 'symbol'}
+expression compiled
+at line 43, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'size', 'type': 'int', 'num': 2}
+end compile let statement, curtoken = {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 44, current token: {'token': 'do', 'type': 'keyword'}
+return statement met
+at line 49, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 52, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of Square.new
+Symbol Table Output
+segment num  name  type
+argument 0     Ax     int
+argument 1     Ay     int
+argument 2     Asize     int
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function Square.new 0', 'push constant 3', 'call Memory.alloc 1', 'pop pointer 0', 'push argument 0', 'pop this 0', 'push argument 1', 'pop this 1', 'push argument 2', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'push pointer 0', 'return']
+compile local variables
+{'token': 'do', 'type': 'keyword'}
+59
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+ should be now beginning of statement at line 59, current token: {'token': 'do', 'type': 'keyword'}
+compiling statements
+at line 59, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 59, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'this', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 65, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 65, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'return', 'type': 'keyword'}
+at line 67, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 67, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 69, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of Square.dispose
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function Square.new 0', 'push constant 3', 'call Memory.alloc 1', 'pop pointer 0', 'push argument 0', 'pop this 0', 'push argument 1', 'pop this 1', 'push argument 2', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'push pointer 0', 'return', '', 'function Square.dispose 0', 'push argument 0', 'pop pointer 0', 'push argument 0', 'call Memory.deAlloc 1', 'push constant 0', 'return']
+compile local variables
+{'token': 'do', 'type': 'keyword'}
+76
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+ should be now beginning of statement at line 76, current token: {'token': 'do', 'type': 'keyword'}
+compiling statements
+at line 76, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 76, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'true', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 82, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 82, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'do', 'type': 'keyword'}
+at line 84, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 84, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 90, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 90, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 92, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 92, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 94, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 95, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 96, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 98, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 99, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 100, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'return', 'type': 'keyword'}
+at line 102, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 102, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 104, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of Square.draw
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function Square.new 0', 'push constant 3', 'call Memory.alloc 1', 'pop pointer 0', 'push argument 0', 'pop this 0', 'push argument 1', 'pop this 1', 'push argument 2', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'push pointer 0', 'return', '', 'function Square.dispose 0', 'push argument 0', 'pop pointer 0', 'push argument 0', 'call Memory.deAlloc 1', 'push constant 0', 'return', '', 'function Square.draw 0', 'push argument 0', 'pop pointer 0', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return']
+compile local variables
+{'token': 'do', 'type': 'keyword'}
+111
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+ should be now beginning of statement at line 111, current token: {'token': 'do', 'type': 'keyword'}
+compiling statements
+at line 111, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 111, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'false', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 117, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 117, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'do', 'type': 'keyword'}
+at line 119, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 119, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 125, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 125, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 127, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 127, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 129, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 130, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 131, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 133, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 134, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 135, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'return', 'type': 'keyword'}
+at line 137, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 137, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 139, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of Square.erase
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function Square.new 0', 'push constant 3', 'call Memory.alloc 1', 'pop pointer 0', 'push argument 0', 'pop this 0', 'push argument 1', 'pop this 1', 'push argument 2', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'push pointer 0', 'return', '', 'function Square.dispose 0', 'push argument 0', 'pop pointer 0', 'push argument 0', 'call Memory.deAlloc 1', 'push constant 0', 'return', '', 'function Square.draw 0', 'push argument 0', 'pop pointer 0', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return', '', 'function Square.erase 0', 'push argument 0', 'pop pointer 0', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return']
+compile local variables
+{'token': 'if', 'type': 'keyword'}
+146
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+ should be now beginning of statement at line 146, current token: {'token': 'if', 'type': 'keyword'}
+compiling statements
+at line 146, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 146, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': '(', 'type': 'symbol'}
+compiling term
+term is exp in parentheses
+term expression in parentheses
+compiling expression
+term to compile: {'token': '(', 'type': 'symbol'}
+compiling term
+term is exp in parentheses
+term expression in parentheses
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 151, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 152, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 153, current token: {'token': ')', 'type': 'symbol'}
+first term compiled: now at {'token': '&lt;', 'type': 'symbol'}
+at line 154, current token: {'token': '&lt;', 'type': 'symbol'}
+&lt; opsymbol met while compile expression
+ in while cycle of expression compilation at line 155, current token: {'token': '254', 'type': 'integerConstant'}
+term to compile: {'token': '254', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 156, current token: {'token': ')', 'type': 'symbol'}
+first term compiled: now at {'token': '&amp;', 'type': 'symbol'}
+at line 157, current token: {'token': '&amp;', 'type': 'symbol'}
+&amp; opsymbol met while compile expression
+ in while cycle of expression compilation at line 158, current token: {'token': '(', 'type': 'symbol'}
+term to compile: {'token': '(', 'type': 'symbol'}
+compiling term
+term is exp in parentheses
+term expression in parentheses
+compiling expression
+term to compile: {'token': '(', 'type': 'symbol'}
+compiling term
+term is exp in parentheses
+term expression in parentheses
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 161, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 162, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 163, current token: {'token': ')', 'type': 'symbol'}
+first term compiled: now at {'token': '&lt;', 'type': 'symbol'}
+at line 164, current token: {'token': '&lt;', 'type': 'symbol'}
+&lt; opsymbol met while compile expression
+ in while cycle of expression compilation at line 165, current token: {'token': '510', 'type': 'integerConstant'}
+term to compile: {'token': '510', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 166, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 167, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 167, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 169, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 169, current token: {'token': 'do', 'type': 'keyword'}
+let statement met
+at line 174, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 174, current token: {'token': 'let', 'type': 'keyword'}
+varname = size
+no array option
+compiling expression
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 178, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 179, current token: {'token': '2', 'type': 'integerConstant'}
+term to compile: {'token': '2', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 180, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'size', 'type': 'int', 'num': 2}
+end compile let statement, curtoken = {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 181, current token: {'token': 'do', 'type': 'keyword'}
+end compiling statements
+at line 186, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'return', 'type': 'keyword'}
+at line 187, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 187, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 189, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of Square.incSize
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function Square.new 0', 'push constant 3', 'call Memory.alloc 1', 'pop pointer 0', 'push argument 0', 'pop this 0', 'push argument 1', 'pop this 1', 'push argument 2', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'push pointer 0', 'return', '', 'function Square.dispose 0', 'push argument 0', 'pop pointer 0', 'push argument 0', 'call Memory.deAlloc 1', 'push constant 0', 'return', '', 'function Square.draw 0', 'push argument 0', 'pop pointer 0', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return', '', 'function Square.erase 0', 'push argument 0', 'pop pointer 0', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return', '', 'function Square.incSize 0', 'push argument 0', 'pop pointer 0', 'push this 1', 'push this 2', 'add', 'push constant 254', 'lt', 'push this 0', 'push this 2', 'add', 'push constant 510', 'lt', 'and', 'not', 'if-goto if0label1', 'push pointer 0', 'call Square.erase 1', 'push this 2', 'push constant 2', 'add', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'goto if0label2', 'label if0label1', 'label if0label2', 'push constant 0', 'return']
+compile local variables
+{'token': 'if', 'type': 'keyword'}
+196
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+ should be now beginning of statement at line 196, current token: {'token': 'if', 'type': 'keyword'}
+compiling statements
+at line 196, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 196, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+first term compiled: now at {'token': '&gt;', 'type': 'symbol'}
+at line 199, current token: {'token': '&gt;', 'type': 'symbol'}
+&gt; opsymbol met while compile expression
+ in while cycle of expression compilation at line 200, current token: {'token': '2', 'type': 'integerConstant'}
+term to compile: {'token': '2', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 201, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 201, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 203, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 203, current token: {'token': 'do', 'type': 'keyword'}
+let statement met
+at line 208, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 208, current token: {'token': 'let', 'type': 'keyword'}
+varname = size
+no array option
+compiling expression
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+first term compiled: now at {'token': '-', 'type': 'symbol'}
+at line 212, current token: {'token': '-', 'type': 'symbol'}
+- opsymbol met while compile expression
+ in while cycle of expression compilation at line 213, current token: {'token': '2', 'type': 'integerConstant'}
+term to compile: {'token': '2', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 214, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'size', 'type': 'int', 'num': 2}
+end compile let statement, curtoken = {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 215, current token: {'token': 'do', 'type': 'keyword'}
+end compiling statements
+at line 220, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'return', 'type': 'keyword'}
+at line 221, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 221, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 223, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of Square.decSize
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function Square.new 0', 'push constant 3', 'call Memory.alloc 1', 'pop pointer 0', 'push argument 0', 'pop this 0', 'push argument 1', 'pop this 1', 'push argument 2', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'push pointer 0', 'return', '', 'function Square.dispose 0', 'push argument 0', 'pop pointer 0', 'push argument 0', 'call Memory.deAlloc 1', 'push constant 0', 'return', '', 'function Square.draw 0', 'push argument 0', 'pop pointer 0', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return', '', 'function Square.erase 0', 'push argument 0', 'pop pointer 0', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return', '', 'function Square.incSize 0', 'push argument 0', 'pop pointer 0', 'push this 1', 'push this 2', 'add', 'push constant 254', 'lt', 'push this 0', 'push this 2', 'add', 'push constant 510', 'lt', 'and', 'not', 'if-goto if0label1', 'push pointer 0', 'call Square.erase 1', 'push this 2', 'push constant 2', 'add', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'goto if0label2', 'label if0label1', 'label if0label2', 'push constant 0', 'return', '', 'function Square.decSize 0', 'push argument 0', 'pop pointer 0', 'push this 2', 'push constant 2', 'gt', 'not', 'if-goto if1label1', 'push pointer 0', 'call Square.erase 1', 'push this 2', 'push constant 2', 'sub', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'goto if1label2', 'label if1label1', 'label if1label2', 'push constant 0', 'return']
+compile local variables
+{'token': 'if', 'type': 'keyword'}
+230
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+ should be now beginning of statement at line 230, current token: {'token': 'if', 'type': 'keyword'}
+compiling statements
+at line 230, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 230, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '&gt;', 'type': 'symbol'}
+at line 233, current token: {'token': '&gt;', 'type': 'symbol'}
+&gt; opsymbol met while compile expression
+ in while cycle of expression compilation at line 234, current token: {'token': '1', 'type': 'integerConstant'}
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 235, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 235, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 237, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 237, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'false', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 243, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 243, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'do', 'type': 'keyword'}
+at line 245, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 245, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 251, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 251, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': '(', 'type': 'symbol'}
+compiling term
+term is exp in parentheses
+term expression in parentheses
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 254, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 255, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 256, current token: {'token': ')', 'type': 'symbol'}
+first term compiled: now at {'token': '-', 'type': 'symbol'}
+at line 257, current token: {'token': '-', 'type': 'symbol'}
+- opsymbol met while compile expression
+ in while cycle of expression compilation at line 258, current token: {'token': '1', 'type': 'integerConstant'}
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 259, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 261, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 262, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 263, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 265, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 266, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 267, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'let', 'type': 'keyword'}
+at line 269, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 269, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 269, current token: {'token': 'let', 'type': 'keyword'}
+varname = y
+no array option
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '-', 'type': 'symbol'}
+at line 273, current token: {'token': '-', 'type': 'symbol'}
+- opsymbol met while compile expression
+ in while cycle of expression compilation at line 274, current token: {'token': '2', 'type': 'integerConstant'}
+term to compile: {'token': '2', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 275, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'y', 'type': 'int', 'num': 1}
+end compile let statement, curtoken = {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 276, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'true', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 282, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 282, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'do', 'type': 'keyword'}
+at line 284, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 284, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 290, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 290, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 292, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 292, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 294, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 295, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 296, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 298, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 299, current token: {'token': '1', 'type': 'integerConstant'}
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 300, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': '}', 'type': 'symbol'}
+at line 302, current token: {'token': '}', 'type': 'symbol'}
+end compiling statements
+at line 302, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'return', 'type': 'keyword'}
+at line 303, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 303, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 305, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of Square.moveUp
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function Square.new 0', 'push constant 3', 'call Memory.alloc 1', 'pop pointer 0', 'push argument 0', 'pop this 0', 'push argument 1', 'pop this 1', 'push argument 2', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'push pointer 0', 'return', '', 'function Square.dispose 0', 'push argument 0', 'pop pointer 0', 'push argument 0', 'call Memory.deAlloc 1', 'push constant 0', 'return', '', 'function Square.draw 0', 'push argument 0', 'pop pointer 0', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return', '', 'function Square.erase 0', 'push argument 0', 'pop pointer 0', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return', '', 'function Square.incSize 0', 'push argument 0', 'pop pointer 0', 'push this 1', 'push this 2', 'add', 'push constant 254', 'lt', 'push this 0', 'push this 2', 'add', 'push constant 510', 'lt', 'and', 'not', 'if-goto if0label1', 'push pointer 0', 'call Square.erase 1', 'push this 2', 'push constant 2', 'add', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'goto if0label2', 'label if0label1', 'label if0label2', 'push constant 0', 'return', '', 'function Square.decSize 0', 'push argument 0', 'pop pointer 0', 'push this 2', 'push constant 2', 'gt', 'not', 'if-goto if1label1', 'push pointer 0', 'call Square.erase 1', 'push this 2', 'push constant 2', 'sub', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'goto if1label2', 'label if1label1', 'label if1label2', 'push constant 0', 'return', '', 'function Square.moveUp 0', 'push argument 0', 'pop pointer 0', 'push this 1', 'push constant 1', 'gt', 'not', 'if-goto if2label1', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 2', 'add', 'push constant 1', 'sub', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push this 1', 'push constant 2', 'sub', 'pop this 1', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push constant 1', 'add', 'call Screen.drawRectangle 4', 'goto if2label2', 'label if2label1', 'label if2label2', 'push constant 0', 'return']
+compile local variables
+{'token': 'if', 'type': 'keyword'}
+312
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+ should be now beginning of statement at line 312, current token: {'token': 'if', 'type': 'keyword'}
+compiling statements
+at line 312, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 312, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': '(', 'type': 'symbol'}
+compiling term
+term is exp in parentheses
+term expression in parentheses
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 316, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 317, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 318, current token: {'token': ')', 'type': 'symbol'}
+first term compiled: now at {'token': '&lt;', 'type': 'symbol'}
+at line 319, current token: {'token': '&lt;', 'type': 'symbol'}
+&lt; opsymbol met while compile expression
+ in while cycle of expression compilation at line 320, current token: {'token': '254', 'type': 'integerConstant'}
+term to compile: {'token': '254', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 321, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 321, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 323, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 323, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'false', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 329, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 329, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'do', 'type': 'keyword'}
+at line 331, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 331, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 337, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 337, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 339, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 339, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 341, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 342, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 343, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 345, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 346, current token: {'token': '1', 'type': 'integerConstant'}
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 347, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'let', 'type': 'keyword'}
+at line 349, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 349, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 349, current token: {'token': 'let', 'type': 'keyword'}
+varname = y
+no array option
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 353, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 354, current token: {'token': '2', 'type': 'integerConstant'}
+term to compile: {'token': '2', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 355, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'y', 'type': 'int', 'num': 1}
+end compile let statement, curtoken = {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 356, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'true', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 362, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 362, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'do', 'type': 'keyword'}
+at line 364, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 364, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 370, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 370, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': '(', 'type': 'symbol'}
+compiling term
+term is exp in parentheses
+term expression in parentheses
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 373, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 374, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 375, current token: {'token': ')', 'type': 'symbol'}
+first term compiled: now at {'token': '-', 'type': 'symbol'}
+at line 376, current token: {'token': '-', 'type': 'symbol'}
+- opsymbol met while compile expression
+ in while cycle of expression compilation at line 377, current token: {'token': '1', 'type': 'integerConstant'}
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 378, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 380, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 381, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 382, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 384, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 385, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 386, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': '}', 'type': 'symbol'}
+at line 388, current token: {'token': '}', 'type': 'symbol'}
+end compiling statements
+at line 388, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'return', 'type': 'keyword'}
+at line 389, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 389, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 391, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of Square.moveDown
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function Square.new 0', 'push constant 3', 'call Memory.alloc 1', 'pop pointer 0', 'push argument 0', 'pop this 0', 'push argument 1', 'pop this 1', 'push argument 2', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'push pointer 0', 'return', '', 'function Square.dispose 0', 'push argument 0', 'pop pointer 0', 'push argument 0', 'call Memory.deAlloc 1', 'push constant 0', 'return', '', 'function Square.draw 0', 'push argument 0', 'pop pointer 0', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return', '', 'function Square.erase 0', 'push argument 0', 'pop pointer 0', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return', '', 'function Square.incSize 0', 'push argument 0', 'pop pointer 0', 'push this 1', 'push this 2', 'add', 'push constant 254', 'lt', 'push this 0', 'push this 2', 'add', 'push constant 510', 'lt', 'and', 'not', 'if-goto if0label1', 'push pointer 0', 'call Square.erase 1', 'push this 2', 'push constant 2', 'add', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'goto if0label2', 'label if0label1', 'label if0label2', 'push constant 0', 'return', '', 'function Square.decSize 0', 'push argument 0', 'pop pointer 0', 'push this 2', 'push constant 2', 'gt', 'not', 'if-goto if1label1', 'push pointer 0', 'call Square.erase 1', 'push this 2', 'push constant 2', 'sub', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'goto if1label2', 'label if1label1', 'label if1label2', 'push constant 0', 'return', '', 'function Square.moveUp 0', 'push argument 0', 'pop pointer 0', 'push this 1', 'push constant 1', 'gt', 'not', 'if-goto if2label1', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 2', 'add', 'push constant 1', 'sub', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push this 1', 'push constant 2', 'sub', 'pop this 1', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push constant 1', 'add', 'call Screen.drawRectangle 4', 'goto if2label2', 'label if2label1', 'label if2label2', 'push constant 0', 'return', '', 'function Square.moveDown 0', 'push argument 0', 'pop pointer 0', 'push this 1', 'push this 2', 'add', 'push constant 254', 'lt', 'not', 'if-goto if3label1', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push constant 1', 'add', 'call Screen.drawRectangle 4', 'push this 1', 'push constant 2', 'add', 'pop this 1', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 2', 'add', 'push constant 1', 'sub', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'goto if3label2', 'label if3label1', 'label if3label2', 'push constant 0', 'return']
+compile local variables
+{'token': 'if', 'type': 'keyword'}
+398
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+ should be now beginning of statement at line 398, current token: {'token': 'if', 'type': 'keyword'}
+compiling statements
+at line 398, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 398, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '&gt;', 'type': 'symbol'}
+at line 401, current token: {'token': '&gt;', 'type': 'symbol'}
+&gt; opsymbol met while compile expression
+ in while cycle of expression compilation at line 402, current token: {'token': '1', 'type': 'integerConstant'}
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 403, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 403, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 405, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 405, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'false', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 411, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 411, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'do', 'type': 'keyword'}
+at line 413, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 413, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': '(', 'type': 'symbol'}
+compiling term
+term is exp in parentheses
+term expression in parentheses
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 420, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 421, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 422, current token: {'token': ')', 'type': 'symbol'}
+first term compiled: now at {'token': '-', 'type': 'symbol'}
+at line 423, current token: {'token': '-', 'type': 'symbol'}
+- opsymbol met while compile expression
+ in while cycle of expression compilation at line 424, current token: {'token': '1', 'type': 'integerConstant'}
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 425, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 427, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 427, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 429, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 430, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 431, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 433, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 434, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 435, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'let', 'type': 'keyword'}
+at line 437, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 437, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 437, current token: {'token': 'let', 'type': 'keyword'}
+varname = x
+no array option
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '-', 'type': 'symbol'}
+at line 441, current token: {'token': '-', 'type': 'symbol'}
+- opsymbol met while compile expression
+ in while cycle of expression compilation at line 442, current token: {'token': '2', 'type': 'integerConstant'}
+term to compile: {'token': '2', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 443, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'x', 'type': 'int', 'num': 0}
+end compile let statement, curtoken = {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 444, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'true', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 450, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 450, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'do', 'type': 'keyword'}
+at line 452, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 452, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 458, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 458, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 460, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 460, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 462, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 463, current token: {'token': '1', 'type': 'integerConstant'}
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 464, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 466, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 467, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 468, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': '}', 'type': 'symbol'}
+at line 470, current token: {'token': '}', 'type': 'symbol'}
+end compiling statements
+at line 470, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'return', 'type': 'keyword'}
+at line 471, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 471, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 473, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': 'method', 'type': 'keyword'}
+Symbol table of Square.moveLeft
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+compile subroutine
+symbol table created
+self.vmcode = ['', 'function Square.new 0', 'push constant 3', 'call Memory.alloc 1', 'pop pointer 0', 'push argument 0', 'pop this 0', 'push argument 1', 'pop this 1', 'push argument 2', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'push pointer 0', 'return', '', 'function Square.dispose 0', 'push argument 0', 'pop pointer 0', 'push argument 0', 'call Memory.deAlloc 1', 'push constant 0', 'return', '', 'function Square.draw 0', 'push argument 0', 'pop pointer 0', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return', '', 'function Square.erase 0', 'push argument 0', 'pop pointer 0', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push constant 0', 'return', '', 'function Square.incSize 0', 'push argument 0', 'pop pointer 0', 'push this 1', 'push this 2', 'add', 'push constant 254', 'lt', 'push this 0', 'push this 2', 'add', 'push constant 510', 'lt', 'and', 'not', 'if-goto if0label1', 'push pointer 0', 'call Square.erase 1', 'push this 2', 'push constant 2', 'add', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'goto if0label2', 'label if0label1', 'label if0label2', 'push constant 0', 'return', '', 'function Square.decSize 0', 'push argument 0', 'pop pointer 0', 'push this 2', 'push constant 2', 'gt', 'not', 'if-goto if1label1', 'push pointer 0', 'call Square.erase 1', 'push this 2', 'push constant 2', 'sub', 'pop this 2', 'push pointer 0', 'call Square.draw 1', 'goto if1label2', 'label if1label1', 'label if1label2', 'push constant 0', 'return', '', 'function Square.moveUp 0', 'push argument 0', 'pop pointer 0', 'push this 1', 'push constant 1', 'gt', 'not', 'if-goto if2label1', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 2', 'add', 'push constant 1', 'sub', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push this 1', 'push constant 2', 'sub', 'pop this 1', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push constant 1', 'add', 'call Screen.drawRectangle 4', 'goto if2label2', 'label if2label1', 'label if2label2', 'push constant 0', 'return', '', 'function Square.moveDown 0', 'push argument 0', 'pop pointer 0', 'push this 1', 'push this 2', 'add', 'push constant 254', 'lt', 'not', 'if-goto if3label1', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push constant 1', 'add', 'call Screen.drawRectangle 4', 'push this 1', 'push constant 2', 'add', 'pop this 1', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 2', 'add', 'push constant 1', 'sub', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'goto if3label2', 'label if3label1', 'label if3label2', 'push constant 0', 'return', '', 'function Square.moveLeft 0', 'push argument 0', 'pop pointer 0', 'push this 0', 'push constant 1', 'gt', 'not', 'if-goto if4label1', 'push constant 0', 'call Screen.setColor 1', 'push this 0', 'push this 2', 'add', 'push constant 1', 'sub', 'push this 1', 'push this 0', 'push this 2', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'push this 0', 'push constant 2', 'sub', 'pop this 0', 'push constant 1', 'neg', 'call Screen.setColor 1', 'push this 0', 'push this 1', 'push this 0', 'push constant 1', 'add', 'push this 1', 'push this 2', 'add', 'call Screen.drawRectangle 4', 'goto if4label2', 'label if4label1', 'label if4label2', 'push constant 0', 'return']
+compile local variables
+{'token': 'if', 'type': 'keyword'}
+480
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+ should be now beginning of statement at line 480, current token: {'token': 'if', 'type': 'keyword'}
+compiling statements
+at line 480, current token: {'token': 'if', 'type': 'keyword'}
+if statement met
+at line 480, current token: {'token': 'if', 'type': 'keyword'}
+IF
+compiling IF
+compiling expression
+term to compile: {'token': '(', 'type': 'symbol'}
+compiling term
+term is exp in parentheses
+term expression in parentheses
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 484, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 485, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 486, current token: {'token': ')', 'type': 'symbol'}
+first term compiled: now at {'token': '&lt;', 'type': 'symbol'}
+at line 487, current token: {'token': '&lt;', 'type': 'symbol'}
+&lt; opsymbol met while compile expression
+ in while cycle of expression compilation at line 488, current token: {'token': '510', 'type': 'integerConstant'}
+term to compile: {'token': '510', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 489, current token: {'token': ')', 'type': 'symbol'}
+if:         conditional  expression compiled
+
+at line 489, current token: {'token': ')', 'type': 'symbol'}
+compiling statements
+at line 491, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 491, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'false', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 497, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 497, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'do', 'type': 'keyword'}
+at line 499, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 499, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 505, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 505, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 507, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 507, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 509, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 510, current token: {'token': '1', 'type': 'integerConstant'}
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 511, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 513, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 514, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 515, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'let', 'type': 'keyword'}
+at line 517, current token: {'token': 'let', 'type': 'keyword'}
+let statement met
+at line 517, current token: {'token': 'let', 'type': 'keyword'}
+compile let
+ compile let  at line 517, current token: {'token': 'let', 'type': 'keyword'}
+varname = x
+no array option
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 521, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 522, current token: {'token': '2', 'type': 'integerConstant'}
+term to compile: {'token': '2', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 523, current token: {'token': ';', 'type': 'symbol'}
+curvarobj = {'segment': 'this', 'name': 'x', 'type': 'int', 'num': 0}
+end compile let statement, curtoken = {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 524, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': 'true', 'type': 'keyword'}
+compiling term
+term is keywordConstant
+term keywordConstant
+first term compiled: now at {'token': ')', 'type': 'symbol'}
+at line 530, current token: {'token': ')', 'type': 'symbol'}
+expression compiled
+at line 530, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': 'do', 'type': 'keyword'}
+at line 532, current token: {'token': 'do', 'type': 'keyword'}
+do statement met
+at line 532, current token: {'token': 'do', 'type': 'keyword'}
+compile expressionList
+compiling expression
+term to compile: {'token': '(', 'type': 'symbol'}
+compiling term
+term is exp in parentheses
+term expression in parentheses
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 539, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 540, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 541, current token: {'token': ')', 'type': 'symbol'}
+first term compiled: now at {'token': '-', 'type': 'symbol'}
+at line 542, current token: {'token': '-', 'type': 'symbol'}
+- opsymbol met while compile expression
+ in while cycle of expression compilation at line 543, current token: {'token': '1', 'type': 'integerConstant'}
+term to compile: {'token': '1', 'type': 'integerConstant'}
+compiling term
+term is integerConstant
+term integerConstant
+expression compiled
+at line 544, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': ',', 'type': 'symbol'}
+at line 546, current token: {'token': ',', 'type': 'symbol'}
+expression compiled
+at line 546, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'x', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'x', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 548, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 549, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 550, current token: {'token': ',', 'type': 'symbol'}
+compiling expression
+term to compile: {'token': 'y', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'y', 'type': 'identifier'}
+first term compiled: now at {'token': '+', 'type': 'symbol'}
+at line 552, current token: {'token': '+', 'type': 'symbol'}
++ opsymbol met while compile expression
+ in while cycle of expression compilation at line 553, current token: {'token': 'size', 'type': 'identifier'}
+term to compile: {'token': 'size', 'type': 'identifier'}
+compiling term
+term is varName
+term varname, varname = {'token': 'size', 'type': 'identifier'}
+expression compiled
+at line 554, current token: {'token': ')', 'type': 'symbol'}
+do statement compiled, curtoken = {'token': '}', 'type': 'symbol'}
+at line 556, current token: {'token': '}', 'type': 'symbol'}
+end compiling statements
+at line 556, current token: {'token': '}', 'type': 'symbol'}
+if statement has been compiled, ctok={'token': 'return', 'type': 'keyword'}
+at line 557, current token: {'token': 'return', 'type': 'keyword'}
+return statement met
+at line 557, current token: {'token': 'return', 'type': 'keyword'}
+end compiling statements
+at line 559, current token: {'token': '}', 'type': 'symbol'}
+end of subroutine compilation, curtoken = {'token': '}', 'type': 'symbol'}
+Symbol table of Square.moveRight
+Symbol Table Output
+segment num  name  type
+argument 0     this     Square
+
+***************************************
+virtual machine code has been generated
+294 lines of vm code
+***************************************
+class symbol table for Square
+Symbol Table Output
+segment num  name  type
+this 0     x     int
+this 1     y     int
+this 2     size     int
+
+294
+Square//Square.vm has 294 lines
+185
+Square//SquareGame.vm has 185 lines
+10
+Square//Main.vm has 10 lines
+void methods are: ['SquareGame.dispose', 'SquareGame.moveSquare', 'SquareGame.run', 'Main.main', 'Square.dispose', 'Square.draw', 'Square.erase', 'Square.incSize', 'Square.decSize', 'Square.moveUp', 'Square.moveDown', 'Square.moveLeft', 'Square.moveRight']
+/home/oleksandr/nand2tetris/projects/11
+['Seven', 'Average', 'classes.py', 'project10.zip', 'Pong', 'ComplexArrays', 'OS', '__pycache__', 'voidmethods.txt', 'JackAnalyzer.py', 'ConvertToBin', 'report.txt', 'Square']

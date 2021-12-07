@@ -1,0 +1,283 @@
+/** Class that contains "global" variables and functions that are used in other classes of the game*/
+class Global
+{
+	/* The current stage number and overall score */
+	static int stageNumber, score;
+	/* Translation that is used when drawing game objects on the screen, since the whole game logic is implemented in a system
+	that starts at the top left cornter (0, 0) */
+	static int translationX, translationY;
+	/* The seed is used when calculating random numbers */
+	static int seed;
+	/* Velocity array of an object, used when enemy object need to change direction */
+	static Array xVel, yVel;
+	/* String with value "Score", without this there was a heap overflow bug for some reason */
+	static string scoreString;
+	/* Number of alive enemies */
+	static int livingEnemies;
+	/* Number of blocks and enemies that are used in current stage, random values */
+	static int numberOfBlocks, numberOfEnemies;
+	/* Minimal number of blocks and enemies in a stage */
+	static int minBlocks, minEnemies;
+	
+	/* Initialize "global" variables */
+	function void initialize()
+	{
+		let stageNumber = 0;
+		let translationX = 1;
+		let translationY = 2;
+		let seed = 0;
+		
+		let xVel = Array.new(4);
+		let yVel = Array.new(4);
+		/* Up */
+		let xVel[0] = 0;
+		let yVel[0] = -1;
+		/* Right */
+		let xVel[1] = 1;
+		let yVel[1] = 0;
+		/* Down */
+		let xVel[2] = 0;
+		let yVel[2] = 1;
+		/* Left */
+		let xVel[3] = -1;
+		let yVel[3] = 0;
+		
+		let score = 0;
+		let scoreString = "Score :";
+		let minBlocks = 6;
+		let minEnemies = 3;
+		
+		return;
+	}
+	
+	/* Function that is called when a new stage is created */
+	function void initializeNewStage()
+	{
+		let stageNumber = stageNumber + 1;
+
+		/* Until stage 20 increase the minimal possible number of blocks and enemies */
+		if (stageNumber < 20)
+		{
+			let minBlocks = minBlocks + 2;
+			let minEnemies = minEnemies + 1;
+		}
+
+		/* With random numbers decide the number of blocks and enemies in stage, blocks in interval [minBlocks, minBlocks + 3]
+		   and enemies in interval [minEnemies, minEnemies + 3]*/
+		let numberOfBlocks = Global.modulo(Global.getRandomNumber(), 3) + minBlocks;
+		let numberOfEnemies = Global.modulo(Global.getRandomNumber(), 3) + minEnemies;
+		let livingEnemies = numberOfEnemies;
+		
+		return;
+	}
+	
+	/* Get the number of alive enemies */
+	function int getNumberOfLivingEnemies()
+	{
+		return livingEnemies;
+	}
+	
+	/* Decrease number of alive enemies */
+	function void decrementLivingEnemies()
+	{
+		let livingEnemies = livingEnemies - 1;
+		return;
+	}
+	
+	/* Get the x coordinate translation */
+	function int getXTranslation()
+	{
+		return translationX;
+	}
+	
+	/* Get the y coordinate translation */
+	function int getYTranslation()
+	{
+		return translationY;
+	}
+	
+	/* Get the global location where an object should be drawn based on it local xPos and yPos coordinates */
+	function int getDrawLocation(int xPos, int yPos)
+	{
+		return ((yPos + Global.getYTranslation()) * 32 * 16) + (xPos + Global.getXTranslation());
+	}
+	
+	/* Get the number of blocks */
+	function int getNumberOfBlocks()
+	{
+		return numberOfBlocks;
+	}
+	
+	/* Get the numberr of enemies */
+	function int getNumberOfEnemies()
+	{
+		return numberOfEnemies;
+	}
+	
+	/* Get the x velocity from xVel array */
+	function int getXVelocity(int index)
+	{
+		return xVel[index];
+	}
+	
+	/* Get the y velocity from yVel array */
+	function int getYVelocity(int index)
+	{
+		return yVel[index];
+	}
+	
+	/* Print the stage number */
+	function void printStageNumber()
+	{
+		do Output.moveCursor(1, 1);
+		do Output.printString("Stage: ");
+		
+		if (stageNumber > 9)
+		{
+			do Output.printInt(stageNumber);
+		}
+		/* If stage number < 10 then print like "0x", where x is the stage number */
+		else
+		{
+			do Output.printInt(0);
+			do Output.printInt(stageNumber);
+		}
+		return;
+	}
+	
+	/* Print the score */
+	function void printScore()
+	{
+		do Output.moveCursor(1, 24);
+		do Output.printString(scoreString);
+		
+		do Output.printInt(score);
+
+		return;
+	}
+	
+	/* Increase the score by number */
+	function void increaseScore(int number)
+	{
+		let score = score + number;
+
+		return;
+	}
+	
+	/* Modulo operation */
+	function int modulo(int a, int b)
+	{
+		var int divResult;
+		
+		let divResult = Math.divide(a, b);
+		
+		return (a - (b * divResult));
+	}
+	
+	/* Simple pseudo random number generator function */
+	function int getRandomNumber()
+	{
+		var int A, C;
+		
+		let A = 153;
+		let C = 451;
+		let seed = Math.abs(seed * A + C);
+
+		return seed;
+	}
+	
+	/* Print the game instructions */
+	function void intro()
+	{
+		var int keyPressed;
+
+		let keyPressed = 0;
+
+		do Output.moveCursor(1, 1);
+		do Output.printString("How to play");
+
+		do Output.moveCursor(3, 1);
+		do Output.printString("Use the cursor key to move");
+
+		do Output.moveCursor(5, 1);
+		do Output.printString("Place a bomb with the [B] button. This is not possible if");
+		do Output.moveCursor(6, 1);
+		do Output.printString("a bomb is already placed or in expoloding phase");
+
+		do Output.moveCursor(8, 1);
+		do Output.printString("The bomb will explode after some time");
+		do Output.moveCursor(9, 1);
+		do Output.printString("or when you press the [C] button");
+		
+		do Output.moveCursor(11, 1);
+		do Output.printString("The bomb can destroys blocks, enemies and the player");
+		
+		do Output.moveCursor(13, 1);
+		do Output.printString("To finish a stage you need to kill all the enemies and");
+		do Output.moveCursor(14, 1);
+		do Output.printString("go to the exit door that is hidden behind a block, destroy");
+		
+		do Output.moveCursor(15, 1);
+		do Output.printString("the blocks in order to find it");
+		
+		do Output.moveCursor(17, 1);
+		do Output.printString("The game is over if you die or if the time runs out");
+		
+		do Output.moveCursor(19, 1);
+		do Output.printString("Press [SPACE] to start playing");
+		
+		/* Loop until space is pressed */
+		while (~(keyPressed = 32))
+		{
+			let keyPressed = Keyboard.keyPressed();
+		}
+
+		return;
+	}
+	
+	/* Print the stage intro*/
+	function void printStageIntro()
+	{
+		do Screen.clearScreen();
+		do Output.moveCursor(10, 28);
+		do Output.printString("Stage: ");
+		
+		if (stageNumber > 9)
+		{
+			do Output.printInt(stageNumber);
+		}
+		else
+		{
+			do Output.printInt(0);
+			do Output.printInt(stageNumber);
+		}
+		
+		do Sys.wait(1500);
+		
+		return;
+	}
+	
+	/* Print game over screen */
+	function void printGameOverScreen(int ending)
+	{
+		do Screen.clearScreen();
+		do Output.moveCursor(10, 28);
+		do Output.printString("GAME OVER");
+		
+		/* If the ending is 1 then the player died */
+		if (ending = 1)
+		{
+			do Output.moveCursor(12, 26);
+			do Output.printString("Player died!");
+		}
+		
+		/* If the ending is 2 then the time has expired */
+		if (ending = 2)
+		{
+			do Output.moveCursor(12, 24);
+			do Output.printString("Time has expired!");
+		}
+		
+		return;
+	}
+}

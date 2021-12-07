@@ -1,0 +1,58 @@
+class Player{
+	// x,y is the center of the rectangle (player character)
+  field int x, y, score;
+
+  constructor Player new(int a, int b){
+    let x = a;
+    let y = b;
+    let score = 0;
+
+    return this;
+  }
+
+  // Move player based on input of user
+	method void moveUp() {
+		let y = y - 5;
+		return;
+	}
+	method void moveDown() {
+		let y = y + 7;
+		return;
+	}
+
+  method void drawPlayer(){
+    if((y+15) > 255){
+      let y = 240;
+    }
+    if((y-15) < 0){
+      let y = 15;
+    }
+    do Screen.drawRectangle((x-15),(y-15),(x+15),(y+15));
+
+    //Draw score
+    do Output.moveCursor(0,0);
+    do Output.printInt(score);
+    return;
+  }
+
+  method void incrementScore(int amount){
+    let score = score + amount;
+    return;
+  }
+
+  method int getScore(){
+    return score;
+  }
+
+  method int getXLocation(){
+    return x;
+  }
+
+  method int getYLocation(){
+    return y;
+  }
+	method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+}

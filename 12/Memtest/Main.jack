@@ -1,0 +1,34 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/MemoryTest/Main.jack
+
+/** Test program for the OS Memory class. */
+class Main {
+
+    /** Performs various memory manipulations. */
+    function void main() {
+        var int m2,a,b,c,m1;
+        var Array i,j,k;
+        let m1 = Memory.checkfree();
+        do Sys.wait(m1);
+
+        let i = Array.new(5);
+        let j = Array.new(10);
+        let k = Array.new(15);
+        do i.dispose();
+        do j.dispose();
+        do k.dispose();
+        /**
+        let a = Memory.alloc(10);
+        let b = Memory.alloc(20);
+        let c = Memory.alloc(30);
+        do Memory.deAlloc(a);
+        do Memory.deAlloc(b);
+        do Memory.deAlloc(c);
+        */
+        let m2 = Memory.checkfree();
+        do Sys.wait(m2);
+        return;
+    }
+}

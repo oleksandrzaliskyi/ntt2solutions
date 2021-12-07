@@ -1,0 +1,350 @@
+/** Class that contains the game logic and all objects. Checks how all the object are interacting */
+class Game
+{
+	/* The game field */
+	field GameField gameField;
+	/* Array of blocks */
+	field Array blocks;
+	/* Array of enemies */
+	field Array enemies;
+	/* The player */
+	field Player player;
+	/* The placed bomb */
+	field Bomb bomb;
+	/* Flame animation when the bomb is activated */
+	field Flame flame;
+	/* Door to finish level */
+	field Door door;
+	/* Different flags */
+	field bool needToDrawBomb, needToDrawDoor, bombShouldExplode, isKeyPressed, isPlayerKilled, isTimeExpired;
+	/* The pressed key */
+	field char pressedKey;
+	/* Timer to measure time */
+	field Time time;
+	
+	/* Create a new game object */
+	constructor Game new()
+	{
+		var int i, xPos, yPos;
+		var Block blockWhereDoorIs;
+		/* Initialize global values for the current game object/ stage */
+		do Global.initializeNewStage();
+		let gameField = GameField.new();
+		
+		/* Initialize blocks, pick random positions to place them */
+		let blocks = Array.new(Global.getNumberOfBlocks());
+		let i = 0;
+		while (i < Global.getNumberOfBlocks())
+		{
+			let xPos = Global.modulo(Global.getRandomNumber(), 13);
+			let yPos = Global.modulo(Global.getRandomNumber(), 13);
+			/* Field needs to be empty (0) and the block should be too close to the player (that is positioned at (0,0) at the beginning) */
+			if ((gameField.getFieldType(xPos, yPos) = 0) & (xPos > 1) & (yPos > 1))
+			{
+				let blocks[i] = Block.new(xPos, yPos, gameField);
+				let i = i + 1;
+			}
+		}
+		
+		/* Pick a random block and put the door behind that block */
+		let i = Global.modulo(Global.getRandomNumber(), Global.getNumberOfBlocks());
+		let blockWhereDoorIs = blocks[i];
+		let door = Door.new(blockWhereDoorIs.getYPos(), blockWhereDoorIs.getXPos());
+		
+		/* Initialize enemies and put them on random positions */
+		let enemies = Array.new(Global.getNumberOfEnemies());
+		let i = 0;
+		while (i < Global.getNumberOfEnemies())
+		{
+			let xPos = Global.modulo(Global.getRandomNumber(), gameField.getSize());
+			let yPos = Global.modulo(Global.getRandomNumber(), gameField.getSize());
+			/* Field needs to be empty (0) and the enemy should be too close to the player (that is positioned at (0,0) at the beginning) */
+			if ((gameField.getFieldType(xPos, yPos) = 0) & (xPos > 2) & (yPos > 2))
+			{
+				let enemies[i] = Enemy.new(xPos, yPos, gameField);
+				let i = i + 1;
+			}
+		}
+
+		let player = Player.new();
+		let bomb = null;
+		let flame = null;
+		let needToDrawBomb = false;
+		let isKeyPressed = false;
+		let bombShouldExplode = false;
+		let isPlayerKilled = false;
+		let needToDrawDoor = false;
+		let time = Time.new();
+		
+		return this;
+	}
+	
+	/* Method that runs the game, cheks keyboard and object interactions */
+	method void run()
+	{
+		var int i;
+		var Enemy enemy;
+		
+		/* Draw the stage */
+		do drawInitial();
+
+		/* Loop until player dies, time expires or the stage is cleared */
+		while (1 = 1)
+		{
+			/* Get pressed key */
+			let pressedKey = Keyboard.keyPressed();
+			
+			/* If a key is pressed and it wasn't pressed before then process it */
+			if (~(pressedKey = 0) & (~isKeyPressed))
+			{
+				/* A key is pressed now */
+				let isKeyPressed = true;
+				
+				/* If B is pressed and there is no bomb or exploding bomb (flame), then create bomb. The bomb
+                   will be drawn when the player moves from that position */
+				if ((pressedKey = 66) & (bomb = null) & (flame = null))
+				{
+					let bomb = Bomb.new(player.getXPos(), player.getYPos(), gameField);
+					let needToDrawBomb = true;
+				}
+				
+				/* If a cursor key is pressed the process the player movement */
+				if ((pressedKey > 129) & (pressedKey < 134))
+				{
+					do player.movePlayer(pressedKey, gameField);
+					/* If a bomb was placed on the previous position then draw it */
+					if (needToDrawBomb)
+					{
+						do bomb.draw();
+						let needToDrawBomb = false;
+					}
+				}
+				/* If there is a bomb and C is pressed, then set flag that the bomb should explode */
+				if ((pressedKey = 67) & ~(bomb = null))
+				{
+					let bombShouldExplode = true;
+				}
+			}
+			
+			/* If nothing is pressed and in the previous "frame" (loop run) something was, then set the flag */
+			if ((pressedKey = 0) & (isKeyPressed))
+			{
+				let isKeyPressed = false;
+			}
+			/* Wait some time */
+			do Sys.wait(10);
+			
+			/* Time updates and object interactions */
+			/* If there is a bomb decrement the time to explode*/
+			if (~(bomb = null))
+			{
+				do bomb.decrementTime();
+				
+				/* Check if the time is that the bomb explodes, set the flag */
+				if (bomb.getTime() < 1)
+				{
+					let bombShouldExplode = true;
+				}
+			}
+			
+			/* If there is a flame (bomb that is exploding), decrement the explosion process time */
+			if (~(flame = null))
+			{
+				do flame.decrementTime();
+				/* Check if the flame has killed the player*/
+				let isPlayerKilled = flame.checkIfKillsPlayer(player);
+				/* Check if the flame is killing enemies */
+				do flame.killEnemies(enemies);
+				
+				/* If the explosion process is expired, remove the flame */
+				if (flame.getTime() < 1)
+				{
+					/* Set fields to empty (0)*/
+					do flame.emptyFields(gameField);
+					/* Check if the explosion was next to the door, so raise a flag that the door needs to be drawn */
+					let needToDrawDoor = flame.checkIfDoorsShouldBeDrawn(door);
+					do flame.dispose();
+					let flame = null;
+				}
+			}
+			
+			/* Decrement stage time */
+			do time.decrementTime();
+			if (time.getTime() = 0)
+			{
+				let isTimeExpired = true;
+				return;
+			}
+			
+			/* Enemy logic */
+			let i = 0;
+			while (i < Global.getNumberOfEnemies())
+			{
+				let enemy = enemies[i];
+				/* Process enemy if it is alive */
+				if (enemy.isAlive())
+				{
+					/* Decrement time to move the enemy */
+					do enemy.decrementTime();
+					/* Check if an enemy is passing through the door, in that case the door needs to be drawn again*/
+					if (~(needToDrawDoor))
+					{
+						let needToDrawDoor = enemy.checkIfDoorsShouldBeDrawn(door);
+					}
+					
+					/* Check if the time that the enemy needs to move is expired*/
+					if (enemy.getTime() < 1)
+					{
+						do enemy.move(gameField);
+					}
+				}
+				let i = i + 1;
+			}
+			
+			/* If the bomb should explode*/
+			if (bombShouldExplode)
+			{
+				/* Create the flame animation */
+				let flame = Flame.new(bomb.getXPos(), bomb.getYPos(), gameField);
+				do flame.draw();
+				/* Check if the explosion killed the player */
+				let isPlayerKilled = flame.checkIfKillsPlayer(player);
+				/* Check which enemies killed the bomb */
+				do flame.killEnemies(enemies);
+				
+				/* Update game field state */
+				do bomb.explode(gameField);
+				do bomb.dispose();
+				let bomb = null;
+				let bombShouldExplode = false;
+			}
+			
+			/* Check if an enemy has killed the player */
+			let i = 0;
+			while (i < Global.getNumberOfEnemies())
+			{
+				let enemy = enemies[i];
+				/* If both enemy and player are alive */
+				if (enemy.isAlive() & ~(isPlayerKilled))
+				{
+					let isPlayerKilled = enemy.checkIfKillsPlayer(player);
+					/* If the player is killed then break the loop by setting i to number of enemies */
+					if (isPlayerKilled)
+					{
+						let i = Global.getNumberOfEnemies();
+					}
+				}
+				let i = i + 1;
+			}
+			
+			/* Draw the door if that is needed */
+			if (needToDrawDoor)
+			{
+				do door.draw();
+				let needToDrawDoor = false;
+			}
+			
+			/* Return if the player is dead */
+			if (isPlayerKilled)
+			{
+				return;
+			}
+			
+			/* Is the player at the door */
+			if (door.checkIfPlayerAtDoor(player))
+			{
+				/* And if all enemies are dead, then return */
+				if ((Global.getNumberOfLivingEnemies() = 0))
+				{
+					do Global.increaseScore(time.getTime());
+					return;
+				}
+				/* Some enemies are alive, draw the door again (since the player is over it and when the player moves the door will be missing) */
+				else
+				{
+					let needToDrawDoor = true;
+				}
+			}
+			
+			/* Print overall score */
+			do Global.printScore();
+		}
+
+		return;
+	}
+	
+	/* Draw all objects when the stage starts */
+	method void drawInitial()
+	{
+		var int i;
+		var Block block;
+		var Enemy enemy;
+		
+		do Screen.clearScreen();
+		
+		do Global.printStageNumber();
+		
+		do gameField.draw();
+		
+		let i = 0;
+		while (i < Global.getNumberOfBlocks())
+		{
+			let block = blocks[i];
+			do block.draw();
+			let i = i + 1;
+		}
+		
+		let i = 0;
+		while (i < Global.getNumberOfEnemies())
+		{
+			let enemy = enemies[i];
+			do enemy.draw();
+			let i = i + 1;
+		}
+		
+		do player.drawFront();
+		do time.draw();
+		
+		return;
+	}
+	
+	/* Get the game status */
+	method int getGameStatus()
+	{
+		/* Return 1 if the player is killed */
+		if (isPlayerKilled)
+		{
+			return 1;
+		}
+		
+		/* Return 2 if the stage time has expired */
+		if (isTimeExpired)
+		{
+			return 2;
+		}
+		
+		/* Everything is ok, return 0 */
+		return 0;
+	}
+	
+	/* Dispode method */
+	method void dispose()
+	{
+		do gameField.dispose();
+		do blocks.dispose();
+		do enemies.dispose();
+		do player.dispose();
+		if (~(bomb = null))
+		{
+			do bomb.dispose();
+		}
+		if (~(flame = null))
+		{
+			do flame.dispose();
+		}
+		do door.dispose();
+		do time.dispose();
+		
+		return;
+	}
+}

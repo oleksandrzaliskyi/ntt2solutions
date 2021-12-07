@@ -1,0 +1,136 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Memory.jack
+
+/**
+ * This library provides two services: direct access to the computer's main
+ * memory (RAM), and allocation and recycling of memory blocks. The Hack RAM
+ * consists of 32,768 words, each holding a 16-bit binary number.
+ */
+class Memory {
+    static Array heap;
+    static Array ram;
+    static int freelist;
+    static int freememsize;
+    /** Initializes the class. */
+
+    function void init() {
+      let ram = 0; //weakly typed language
+      let heap = 2048;
+      let freelist = 0;
+      //freelist contains one long segment
+      let heap[0] = 2048;
+      let heap[1] = 14334;
+      return;
+    }
+
+    /** Returns the RAM value at the given address. */
+    function int peek(int address) {
+      return ram[address];
+    }
+
+    /** Sets the RAM value at the given address to the given value. */
+    function void poke(int address, int value) {
+      let ram[address] = value;
+      return;
+    }
+
+    /** Finds an available RAM block of the given size and returns
+     *  a reference to its base address. */
+    function int alloc(int size) {
+      var int current;
+      var int cursegsize;
+      var int next;
+      var int nextsize;
+
+      var int nextnext;
+
+      var int returnable; // to be used while dividing segment to 2 pieces
+
+      let cursegsize = 0;
+      let current = freelist;
+      let next = current;
+      let nextsize = 0;
+
+      // if first segment is possible, loop never executed
+      //after finished, "next" becomes possible segment
+      while(~(heap[current+1]>size)){
+        //go ahead from current
+        let current = heap[current];
+        if (~(heap[current+1] = null)){
+          let next = heap[current];
+        }
+      }
+
+      // now our addr is good, time to alloc
+      let nextsize = heap[next+1];
+
+      //if segment size is too small for parting it
+      if ((heap[next+1]-size)<2){
+
+        //connect previous to nextnext or to null;
+        if (heap[next] = null)
+        {
+          let heap[current] = null;
+        }
+        else
+        {
+          let heap[current] = heap[next];
+        }
+
+        //return the block without parting it
+        return next + heap + 2;
+      }
+
+      // if segment size is big enougth to divide it
+      else
+      {
+        //next + its size - allocated size;
+        let returnable = next + heap[next+1] - size;
+
+        //mark its size on itself
+        let heap[returnable-1] = size;
+        // mark  link to null on the returnable segment
+        let heap[returnable-2] = null;
+
+        // decrement the size of next
+        let heap[next+1] = heap[next+1] - size - 2;
+        return returnable + heap;
+      }
+
+    }
+
+    /** De-allocates the given object (cast as an array) by making
+     *  it available for future allocations. */
+    function void deAlloc(Array o) {
+      let ram[o-2] = freelist;
+      let freelist = o;
+      return;
+    }
+
+    function boolean ispossible(int node, int size){
+      if (~(heap[node+1]>size)){
+        return true;
+      }
+      return false;
+    }
+
+    function int checkfree(){
+      //node - address of beginning of segment
+      var int node, meme;
+      let node = freelist + heap;
+      let meme = ram[node+1];
+
+      //case of one big segment
+      if (node[1] = 14334){
+          return heap[node-1];
+      }
+
+      while(~(node[0] > 0)) {
+        let node = ram[node]; //go to next
+        let meme = meme + ram[node+1];
+      }
+      return meme;
+    }
+}

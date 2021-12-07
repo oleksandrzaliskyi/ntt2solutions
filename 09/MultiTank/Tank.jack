@@ -1,0 +1,129 @@
+class Tank {
+  // this is not used for now
+  field Array picture;
+  // tank is square - and this is side of tank
+  field int size;
+  field int gameside; // side of the game - 0 is player or ally, 1 is enemy
+  field int armedprogress;
+  field int reloaddistance;
+  // active - this is status variable, can have meaning 0 or 1, and is
+  // applied here for further optimization (cleaning dynamic array of tanks)
+  field int active;
+  // coordinates of left upper corner of the tank
+  field int x,y, speed;
+
+  //field int timet
+
+  // direction of tank when it appears
+  field int dirx,diry;
+
+  constructor Tank new(int Ax,int Ay, int side){
+  let x = Ax;
+  let y = Ay;
+
+  // direction of tank's initial position
+  let dirx = 0;
+  let diry = -1;
+  let size = 16;
+  let active = 1;
+  let speed = 3;
+  let gameside = side;
+  let armedprogress = 260;
+  let reloaddistance = 256;
+  do draw();
+  return this;
+  }
+
+  method void dispose() {
+  do Memory.deAlloc(this);
+  return;
+  }
+
+  // draws the tank
+  method void draw(){
+    do Screen.setColor(true);
+    do Screen.drawRectangle(x, y, x + size, y+size);
+    return;
+  }
+
+  // moves the tank up 1 pixel
+  method void moveUp(){
+  if(y-speed>0){
+    let y = y-speed;
+
+    //change direction
+    let diry = -1;
+    let dirx = 0;
+    }
+  return;
+  }
+
+  // moves the tank down 1 pixel
+  method void moveDown(){
+  if((y+size)<254){
+  let y = y+speed;
+
+  //change direction
+  let diry = 1;
+  let dirx = 0;
+  }
+  return;
+  }
+
+  // moves the tank left 1 pixel
+  method void moveLeft(){
+  if(x-speed>0){
+    let x = x-speed;
+
+    //change direction
+    let diry = 0;
+    let dirx = -1;
+    }
+  return;
+  }
+
+  // moves the tank right 1 pixel
+  method void moveRight(){
+    if((x+size)<510){
+    let x = x+speed;
+
+    //change direction
+    let diry = 0;
+    let dirx = 1;
+    }
+    return;
+  }
+
+  method Bullet Shoot(){
+  var int startx,starty;
+  var Bullet currentbullet;
+  let startx = x + 8;
+  let starty = y + 8;
+  let armedprogress = armedprogress - reloaddistance;
+  let currentbullet = Bullet.new(startx,starty, dirx,diry,3,gameside);
+  return currentbullet;
+  }
+
+  method void partiallyArm(){
+    if (armedprogress < (reloaddistance + 5)){
+        let armedprogress = armedprogress + 5;
+    }
+    return;
+  }
+
+  method int isArmed(){
+    if (armedprogress>reloaddistance){
+      return 1;
+    }
+    return 0;
+  }
+  method int getArmament(){
+    return armedprogress;
+  }
+
+  method void erase() {
+  do Screen.setColor(false);
+  do Screen.drawRectangle(x,y, x + size, y + size);
+  return;
+  }
+}

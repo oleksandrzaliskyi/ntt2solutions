@@ -1,0 +1,129 @@
+/** Class that presents the game field. The game is going on a discrete field of size x size dimension */
+class GameField
+{
+	/* Size of the game field */
+	field int size;
+	/* Type of the field, it can be one of the following integer values:
+	   0 - empty field
+	   1 - wall
+	   2 - block
+	   3 - bomb
+	   4 - flame
+	   5 - enemy
+	   This variable is usually used for collision detection */
+	field Array fieldType;
+
+	/* Create new game field*/
+	constructor GameField new()
+	{
+		var int i, j;
+		var Array temp;
+		/* Set size to 13*/
+		let size = 13;
+				
+		let i = 0;
+		let j = 0;
+		
+		/* Initialize fieldType values */
+		let fieldType = Array.new(size);
+		while (i < size)
+		{
+			let fieldType[i] = Array.new(size);
+			let temp = fieldType[i];
+			let j = 0;
+			while (j < size)
+			{
+				/* Sets the fieldType to 0*/
+				let temp[j] = 0;
+				let j = j + 1;
+			}
+			let i = i + 1;
+		}
+		
+		let i = 1;
+		let j = 1;
+		
+		/* Set wall fieldType (1), nobody can move to this field type */
+		while (i < size)
+		{
+			let temp = fieldType[i];
+			let j = 1;
+			while (j < size)
+			{
+				let temp[j] = 1;
+				let j = j + 2;
+			}
+			let i = i + 2;
+		}
+
+		return this;
+	}
+	
+	/* Get the size */
+	method int getSize()
+	{
+		return size;
+	}
+	
+	/* Get the field type */
+	method int getFieldType(int xPos, int yPos)
+	{
+		var Array temp;
+		/* If the coordinates are outside the field then return -1 */
+		if ((xPos < 0) | (yPos < 0) | (xPos > (size - 1)) | (yPos > (size - 1)))
+		{
+			return -1;
+		}
+		
+		let temp = fieldType[yPos];
+		
+		return temp[xPos];
+	}
+	
+	/* Set a field to a given value */
+	method void setFieldType(int xPos, int yPos, int type)
+	{
+		var Array temp;
+		let temp = fieldType[yPos];
+		let temp[xPos] = type;
+
+		return;
+	}
+	
+	/* Draw the field with walls and border */
+	method void draw()
+	{
+		var int i, j;
+
+		do Screen.setColor(true);
+		let i = 1;
+		let j = 1;
+
+		/* Draw the walls */
+		while (i < size)
+		{
+			let j = 1;
+			while (j < size)
+			{
+				do Screen.drawRectangle((Global.getXTranslation() + j) * 16, (Global.getYTranslation() + i) * 16, (Global.getXTranslation() + j) * 16 + 15, (Global.getYTranslation() + i) * 16 + 15);
+				let j = j + 2;
+			}
+			let i = i + 2;
+		}
+		
+		/* Draw a border around the field */
+		do Screen.drawLine(Global.getXTranslation() * 16 - 1, Global.getYTranslation() * 16 - 1, Global.getXTranslation() * 16 - 1, (Global.getYTranslation() + size) * 16 + 1);
+		do Screen.drawLine(Global.getXTranslation() * 16 - 1, (Global.getYTranslation() + size) * 16 + 1, (Global.getXTranslation() + size) * 16 + 1, (Global.getYTranslation() + size) * 16 + 1);
+		do Screen.drawLine((Global.getXTranslation() + size) * 16 + 1, (Global.getYTranslation() + size) * 16 + 1, (Global.getXTranslation() + size) * 16 + 1, Global.getYTranslation() * 16 - 1);
+		do Screen.drawLine((Global.getXTranslation() + size) * 16 + 1, Global.getYTranslation() * 16 - 1, Global.getXTranslation() * 16 - 1, Global.getYTranslation() * 16 - 1);
+		
+		return;
+	}
+	
+	/* Dispose method */
+	method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+}

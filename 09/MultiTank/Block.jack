@@ -1,0 +1,43 @@
+class Block{
+  field int x,y;
+  field int size;
+  field int active;
+
+  constructor Block new(int xcoord, int ycoord){
+    let x = xcoord;
+    let y = ycoord;
+    let size = 8;
+    return this;
+  }
+
+  method void draw(){
+    do Screen.drawRectangle(x,y,x+size,y+size);
+    //do Screen.drawLine(x,y,x+size, y); //horizontal upper border
+    //do Screen.drawLine(x,y+size,x+size,y+size); // horizontal lower border
+    return;
+  }
+
+  method void drawBlock(int blocknumber){
+    var int rownumber, colnumber, startx, starty,endx,endy,oddrow;
+
+    let rownumber = blocknumber/64;
+    let colnumber = blocknumber - (rownumber*64);
+    let startx = rownumber*size;
+    let starty = rownumber*size;
+    let oddrow = (rownumber/2) - ((rownumber/2)*2);
+
+    do Screen.drawRectangle(startx,starty+1,startx+size,starty+size);
+    if (oddrow = 1){
+      do Screen.setColor(false);
+      do Screen.drawLine(startx+4,starty,startx+4,starty+size);
+    }
+    return;
+  }
+
+
+
+  method void dispose(){
+    do Memory.deAlloc(this);
+    return;
+  }
+}

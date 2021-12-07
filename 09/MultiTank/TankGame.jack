@@ -1,0 +1,195 @@
+class TankGame{
+field Bullet availablebullet;
+field Tank tank; // my tank
+field Array bullets, enemytanks, blocks;
+field int enemycount, maxbulletcount, shotcounter;
+field int additional;
+field int size;
+field int freezetime;
+field int direction; // the tank current direction
+                    // 1=up, 2=down, 3=left, 4=right
+
+    /** Constructs a new Tank Game */
+    constructor TankGame new() {
+      var int blockcounter;
+      let blockcounter = 512;
+
+      // Creates a tank and positions it at the bottom-centre of the screen
+      let tank = Tank.new(239,239,0);
+      let enemytanks = Array.new(10);
+      let maxbulletcount = 20;
+      let bullets = Array.new(maxbulletcount);
+      let blocks = Array.new(2048);
+      let enemycount = 0;
+      let shotcounter = 0;
+      let additional = 0;
+      let freezetime = 10;
+
+      //fill block field
+      while (blockcounter<1536){
+        let blocks[blockcounter] = 1;
+        let blockcounter = blockcounter + 1;
+      }
+
+
+      let size = 8;
+      return this;
+    }
+
+    /** Disposes this game. */
+    method void dispose() {
+    do tank.dispose();
+    do Memory.deAlloc(this);
+    return;
+    }
+
+    method void moveTank(){
+    if (direction = 1) { do tank.moveUp(); }
+    if (direction = 2) { do tank.moveDown(); }
+    if (direction = 3) { do tank.moveLeft(); }
+    if (direction = 4) { do tank.moveRight(); }
+    //do Sys.wait(15); // delays the next movement, freezes the frame
+    return;
+    }
+
+    method void moveBullets() {
+      var int i;
+      let i = 0;
+      // go across the array of bullets and move each bullet
+      //till the end of the array
+      return;
+    }
+
+
+    method void run() {
+
+      var char key; // the key currently pressed by the user
+      var boolean exit;
+      var Bullet currentbullet;
+      var int blocknumber;
+      var int currentblock;
+      var int biteration, indexbullet, armedstatus, deletebulletactive;
+      var String messagestring;
+
+      let messagestring = String.new(1);
+
+      let indexbullet = 0;
+      let exit = false;
+      let biteration = 0;
+
+      // main game loop
+      while(~exit) {
+
+      // clear screen
+      do Screen.clearScreen();
+
+
+      //draw blocks
+      let blocknumber = 0;
+
+      while(blocknumber<2048){
+        let currentblock = blocks[blocknumber];
+        if (currentblock = 1){
+          do drawBlock(blocknumber);
+        }
+        let blocknumber = blocknumber +1;
+      }
+
+      //draw tanks
+      do tank.draw();
+      do Output.moveCursor(0,0);
+      //do Sys.wait(freezetime);
+      //move and draw bullets
+      let biteration = 0;
+      while (biteration < maxbulletcount){
+          let currentbullet = bullets[biteration];
+          if (currentbullet = null){
+            let messagestring = "@";
+            // bullet status
+            //do Output.printString(messagestring);
+            do messagestring.dispose();
+          }
+          if (~(currentbullet = null)){
+            let deletebulletactive = currentbullet.getActive();
+            let messagestring = "1";
+            //bullet status
+            //do Output.printString(messagestring);
+            do messagestring.dispose();
+
+            if (deletebulletactive = 0){
+                do currentbullet.dispose();
+                let bullets[biteration] = null;
+              }
+
+            if (deletebulletactive = 1){
+                do currentbullet.moveStep();
+                do currentbullet.draw();
+                /* Output projectile data
+                do Output.printString("(");
+                do Output.printInt(currentbullet.getx());
+                do Output.printString(",");
+                do Output.printInt(currentbullet.gety());
+                do Output.printString(")");
+                //do Output.printInt(biteration);*/
+              }
+          }
+          let biteration = biteration + 1;
+        }
+      let biteration = 0;
+
+    // arm the tanks in the loop
+    do tank.partiallyArm();
+    let key = Keyboard.keyPressed();
+    let direction = 0;
+    if (key = 81) {let exit = true; }   // q key
+    if (key = 131) {let direction = 1; }   // up arrow
+    if (key = 133) {let direction = 2; }   // down arrow
+    if (key = 130) {let direction = 3; }   // left arrow
+    if (key = 132) {let direction = 4; }   // right arrow
+    if (key = 90) {
+      // time to shoot when Z key pressed
+      // bullet disposal
+      let armedstatus = tank.isArmed();
+      if (armedstatus=1){
+        let bullets[indexbullet] = tank.Shoot();
+        let shotcounter = shotcounter + 1;
+        let indexbullet = indexbullet +1;
+        if (indexbullet = maxbulletcount){
+          let indexbullet = 0;
+          }
+        }
+      }
+    do Sys.wait(freezetime);
+    // waits for the key to be released
+    if (~(key=0)) {
+      let key = Keyboard.keyPressed();
+      do moveTank();
+      }
+      //do Sys.wait(freezetime);
+              } //while
+    return;
+    }
+
+    method void drawBlock(int blocknumber){
+      var int rownumber, colnumber, startx, starty,endx,endy,oddrow,temp;
+
+      let rownumber = blocknumber/64;
+      let colnumber = blocknumber-(rownumber*64);
+      let startx = colnumber*size;
+      let starty = rownumber*size;
+      let temp = rownumber/2;
+      let oddrow = rownumber - (2*temp);
+      //let oddrow = 1;
+      do Screen.setColor(true);
+      do Screen.drawRectangle(startx, starty+2,startx+size-1,starty+size);
+      if (oddrow = 0){
+        do Screen.setColor(false);
+        do Screen.drawLine(startx,starty+1,startx,starty+size);
+      }
+      if (oddrow = 1){
+        do Screen.setColor(false);
+        do Screen.drawLine(startx+4,starty+1,startx+4,starty+size);
+      }
+      return;
+    }
+}

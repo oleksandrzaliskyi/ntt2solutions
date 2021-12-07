@@ -1,0 +1,108 @@
+function Time.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push constant 100
+pop this 0
+push constant 100
+pop this 1
+push pointer 0
+return
+function Time.decrementTime 0
+push argument 0
+pop pointer 0
+push this 1
+push constant 1
+sub
+pop this 1
+push this 1
+push constant 1
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push constant 1
+sub
+pop this 0
+push constant 100
+pop this 1
+push pointer 0
+call Time.draw 1
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Time.getTime 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Time.draw 0
+push argument 0
+pop pointer 0
+push constant 1
+push constant 12
+call Output.moveCursor 2
+pop temp 0
+push constant 6
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push this 0
+push constant 10
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 2
+call String.new 1
+push constant 32
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+label IF_FALSE0
+push this 0
+push constant 9
+gt
+push this 0
+push constant 100
+lt
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 1
+call String.new 1
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+label IF_FALSE1
+push this 0
+call Output.printInt 1
+pop temp 0
+push constant 0
+return
+function Time.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

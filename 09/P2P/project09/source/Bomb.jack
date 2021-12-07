@@ -1,0 +1,83 @@
+/** Class that presents the bomb */
+class Bomb
+{
+	/* Position and time to explode */
+	field int xPos, yPos, time;
+
+	/* Create a new bomb */
+	constructor Bomb new (int x, int y, GameField gameField)
+	{
+		let xPos = x;
+		let yPos = y;
+		let time = 200;
+		/* The field where the bomb is set is set to value 3*/
+		do gameField.setFieldType(x, y, 3);
+		
+		return this;
+	}
+
+	/* Get x position */
+	method int getXPos()
+	{
+		return xPos;
+	}
+	
+	/* Get y position */
+	method int getYPos()
+	{
+		return yPos;
+	}
+
+	/* When the bomb explodes, set the field to 0 */
+	method void explode(GameField gameField)
+	{
+		do gameField.setFieldType(xPos, yPos, 0);
+		return;
+	}
+	
+	/* Decrement time until explosion */
+	method void decrementTime()
+	{
+		let time = time - 1;
+		return;
+	}
+	
+	/* Get time until explosion */
+	method int getTime()
+	{
+		return time;
+	}
+
+	/* Draw the bomb */
+	method void draw()
+	{
+		var int location, memAddress;
+		let location = Global.getDrawLocation(xPos, yPos);
+
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 1792);
+		do Memory.poke(memAddress+32, 128);
+		do Memory.poke(memAddress+64, 992);
+		do Memory.poke(memAddress+96, 4088);
+		do Memory.poke(memAddress+128, 6652);
+		do Memory.poke(memAddress+160, 12542);
+		do Memory.poke(memAddress+192, 28927);
+		do Memory.poke(memAddress+224, 31231);
+		do Memory.poke(memAddress+256, 32767);
+		do Memory.poke(memAddress+288, 32767);
+		do Memory.poke(memAddress+320, 32767);
+		do Memory.poke(memAddress+352, 16382);
+		do Memory.poke(memAddress+384, 8188);
+		do Memory.poke(memAddress+416, 4088);
+		do Memory.poke(memAddress+448, 992);
+		do Memory.poke(memAddress+480, 0);
+		return;
+	}
+	
+	/* Dispose method */
+	method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+}

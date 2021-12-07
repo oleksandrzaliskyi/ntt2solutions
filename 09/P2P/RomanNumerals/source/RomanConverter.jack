@@ -1,0 +1,139 @@
+/** Utility class for converting to and from roman numerals. */
+
+class RomanConverter {
+   field int numeralsLength;
+   field Array romanNumerals;
+   field Array romanNumeralsNums;
+
+   /* constructs the converter and populates the array fields */
+   constructor RomanConverter new() {
+      do initialize();
+      return this;
+   }
+
+   method void initialize() {
+      let numeralsLength = 13;
+
+      let romanNumerals = Array.new(numeralsLength);
+      let romanNumeralsNums = Array.new(numeralsLength);
+
+      let romanNumerals[0] = "M";
+      let romanNumeralsNums[0] = 1000;
+      let romanNumerals[1] = "CM";
+      let romanNumeralsNums[1] = 900;
+      let romanNumerals[2] = "D";
+      let romanNumeralsNums[2] = 500;
+      let romanNumerals[3] = "CD";
+      let romanNumeralsNums[3] = 400;
+      let romanNumerals[4] = "C";
+      let romanNumeralsNums[4] = 100;
+      let romanNumerals[5] = "XC";
+      let romanNumeralsNums[5] = 90;
+      let romanNumerals[6] = "L";
+      let romanNumeralsNums[6] = 50;
+      let romanNumerals[7] = "XL";
+      let romanNumeralsNums[7] = 40;
+      let romanNumerals[8] = "X";
+      let romanNumeralsNums[8] = 10;
+      let romanNumerals[9] = "IX";
+      let romanNumeralsNums[9] = 9;
+      let romanNumerals[10] = "V";
+      let romanNumeralsNums[10] = 5;
+      let romanNumerals[11] = "IV";
+      let romanNumeralsNums[11] = 4;
+      let romanNumerals[12] = "I";
+      let romanNumeralsNums[12] = 1;
+
+      return;
+   }
+
+   // convert decimal number to roman
+   method String toRoman(int n) {
+      var int i, j;
+      var int currentNum;
+      var String romanNumber;
+
+      let romanNumber = "";
+
+      let i = 0;
+      while (i < numeralsLength) {
+         let currentNum = n / romanNumeralsNums[i];
+
+         if (~(currentNum = 0)) {
+            let j = 0;
+            while (j < currentNum) {
+               let romanNumber = StringUtils.concatenate(romanNumber, romanNumerals[i]);
+               let j = j + 1;
+            }
+         }
+
+         // n = n % romanNumeralsNums[i]
+         while (~(n < romanNumeralsNums[i])) {
+            let n = n - romanNumeralsNums[i];
+         }
+
+         let i = i + 1;
+      }
+
+      return romanNumber;
+   }
+
+   method int getValueForRomanDigit(int romanDigit) {
+      var String romanNum;
+      var int i, val, romanNumVal;
+
+      let i = 0;
+      while (i < numeralsLength) {
+         let romanNum = romanNumerals[i];
+         let romanNumVal = romanNum.charAt(0);
+
+         if((romanNum.length() = 1) & (romanNumVal = romanDigit)) {
+            return romanNumeralsNums[i];
+         }
+
+         let i = i + 1;
+      }
+
+      return 0;
+   }
+
+   // convert roman number to decimal
+   method int toDecimal(String n) {
+      var int i, prev, temp, val;
+
+      let val = 0;
+      let prev = 0;
+
+      let i = n.length();
+      while (i > 0) {
+         let i = i - 1;
+         let temp = getValueForRomanDigit(n.charAt(i));
+
+         if(temp < prev) {
+            let val = val - temp;
+         } else {
+            let val = val + temp;
+         }
+
+         let prev = temp;
+      }
+
+      return val;
+   }
+
+   // check if roman number is valid
+   method bool isValidNumber(String n) {
+       var int i;
+
+       let i = 0;
+       while(i<n.length()) {
+          if(getValueForRomanDigit(n.charAt(i)) = 0) {
+             return false;
+          }
+
+          let i = i + 1;
+       }
+
+       return true;
+   }
+}

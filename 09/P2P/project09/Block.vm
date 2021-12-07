@@ -1,0 +1,159 @@
+function Block.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push argument 2
+push this 0
+push this 1
+push constant 2
+call GameField.setFieldType 4
+pop temp 0
+push pointer 0
+return
+function Block.getXPos 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Block.getYPos 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Block.draw 2
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Global.getDrawLocation 2
+pop local 0
+push constant 16384
+push local 0
+add
+pop local 1
+push local 1
+push constant 0
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 32
+add
+push constant 28655
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 64
+add
+push constant 28655
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 96
+add
+push constant 28655
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 128
+add
+push constant 28655
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 160
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 192
+add
+push constant 32511
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 224
+add
+push constant 32511
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 256
+add
+push constant 32511
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 288
+add
+push constant 32511
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 320
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 352
+add
+push constant 28639
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 384
+add
+push constant 28639
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 416
+add
+push constant 28639
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 448
+add
+push constant 28639
+neg
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 480
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Block.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

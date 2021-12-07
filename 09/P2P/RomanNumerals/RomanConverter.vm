@@ -1,0 +1,492 @@
+function RomanConverter.new 0
+push constant 3
+call Memory.alloc 1
+pop pointer 0
+push pointer 0
+call RomanConverter.initialize 1
+pop temp 0
+push pointer 0
+return
+function RomanConverter.initialize 0
+push argument 0
+pop pointer 0
+push constant 13
+pop this 0
+push this 0
+call Array.new 1
+pop this 1
+push this 0
+call Array.new 1
+pop this 2
+push constant 0
+push this 1
+add
+push constant 1
+call String.new 1
+push constant 77
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+push this 2
+add
+push constant 1000
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+push this 1
+add
+push constant 2
+call String.new 1
+push constant 67
+call String.appendChar 2
+push constant 77
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+push this 2
+add
+push constant 900
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push this 1
+add
+push constant 1
+call String.new 1
+push constant 68
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push this 2
+add
+push constant 500
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 3
+push this 1
+add
+push constant 2
+call String.new 1
+push constant 67
+call String.appendChar 2
+push constant 68
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 3
+push this 2
+add
+push constant 400
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 4
+push this 1
+add
+push constant 1
+call String.new 1
+push constant 67
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 4
+push this 2
+add
+push constant 100
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 5
+push this 1
+add
+push constant 2
+call String.new 1
+push constant 88
+call String.appendChar 2
+push constant 67
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 5
+push this 2
+add
+push constant 90
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 6
+push this 1
+add
+push constant 1
+call String.new 1
+push constant 76
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 6
+push this 2
+add
+push constant 50
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 7
+push this 1
+add
+push constant 2
+call String.new 1
+push constant 88
+call String.appendChar 2
+push constant 76
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 7
+push this 2
+add
+push constant 40
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 8
+push this 1
+add
+push constant 1
+call String.new 1
+push constant 88
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 8
+push this 2
+add
+push constant 10
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 9
+push this 1
+add
+push constant 2
+call String.new 1
+push constant 73
+call String.appendChar 2
+push constant 88
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 9
+push this 2
+add
+push constant 9
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 10
+push this 1
+add
+push constant 1
+call String.new 1
+push constant 86
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 10
+push this 2
+add
+push constant 5
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 11
+push this 1
+add
+push constant 2
+call String.new 1
+push constant 73
+call String.appendChar 2
+push constant 86
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 11
+push this 2
+add
+push constant 4
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 12
+push this 1
+add
+push constant 1
+call String.new 1
+push constant 73
+call String.appendChar 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 12
+push this 2
+add
+push constant 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+return
+function RomanConverter.toRoman 4
+push argument 0
+pop pointer 0
+push constant 0
+call String.new 1
+pop local 3
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 0
+lt
+not
+if-goto WHILE_END0
+push argument 1
+push local 0
+push this 2
+add
+pop pointer 1
+push that 0
+call Math.divide 2
+pop local 2
+push local 2
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop local 1
+label WHILE_EXP1
+push local 1
+push local 2
+lt
+not
+if-goto WHILE_END1
+push local 3
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+call StringUtils.concatenate 2
+pop local 3
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+label IF_FALSE0
+label WHILE_EXP2
+push argument 1
+push local 0
+push this 2
+add
+pop pointer 1
+push that 0
+lt
+not
+not
+if-goto WHILE_END2
+push argument 1
+push local 0
+push this 2
+add
+pop pointer 1
+push that 0
+sub
+pop argument 1
+goto WHILE_EXP2
+label WHILE_END2
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push local 3
+return
+function RomanConverter.getValueForRomanDigit 4
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push this 0
+lt
+not
+if-goto WHILE_END0
+push local 1
+push this 1
+add
+pop pointer 1
+push that 0
+pop local 0
+push local 0
+push constant 0
+call String.charAt 2
+pop local 3
+push local 0
+call String.length 1
+push constant 1
+eq
+push local 3
+push argument 1
+eq
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 1
+push this 2
+add
+pop pointer 1
+push that 0
+return
+label IF_FALSE0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function RomanConverter.toDecimal 4
+push argument 0
+pop pointer 0
+push constant 0
+pop local 3
+push constant 0
+pop local 1
+push argument 1
+call String.length 1
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 0
+gt
+not
+if-goto WHILE_END0
+push local 0
+push constant 1
+sub
+pop local 0
+push pointer 0
+push argument 1
+push local 0
+call String.charAt 2
+call RomanConverter.getValueForRomanDigit 2
+pop local 2
+push local 2
+push local 1
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 3
+push local 2
+sub
+pop local 3
+goto IF_END0
+label IF_FALSE0
+push local 3
+push local 2
+add
+pop local 3
+label IF_END0
+push local 2
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 3
+return
+function RomanConverter.isValidNumber 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push argument 1
+call String.length 1
+lt
+not
+if-goto WHILE_END0
+push pointer 0
+push argument 1
+push local 0
+call String.charAt 2
+call RomanConverter.getValueForRomanDigit 2
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+not
+return

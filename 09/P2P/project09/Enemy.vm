@@ -1,0 +1,464 @@
+function Enemy.new 0
+push constant 7
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push constant 0
+not
+pop this 6
+push constant 1
+pop this 4
+push constant 1
+pop this 5
+push constant 0
+pop this 2
+push constant 0
+pop this 3
+push argument 2
+push this 0
+push this 1
+push constant 5
+call GameField.setFieldType 4
+pop temp 0
+push pointer 0
+return
+function Enemy.getXPos 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Enemy.getYPos 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Enemy.checkIfKillsPlayer 0
+push argument 0
+pop pointer 0
+push argument 1
+call Player.getXPos 1
+push this 0
+eq
+push argument 1
+call Player.getYPos 1
+push this 1
+eq
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
+return
+function Enemy.isAlive 0
+push argument 0
+pop pointer 0
+push this 6
+return
+function Enemy.killEnemy 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 6
+push constant 0
+return
+function Enemy.decrementTime 0
+push argument 0
+pop pointer 0
+push this 4
+push constant 1
+sub
+pop this 4
+push constant 0
+return
+function Enemy.getTime 0
+push argument 0
+pop pointer 0
+push this 4
+return
+function Enemy.move 3
+push argument 0
+pop pointer 0
+push constant 50
+pop this 4
+push this 5
+push constant 1
+sub
+pop this 5
+push this 5
+push constant 0
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push this 2
+add
+pop local 1
+push this 1
+push this 3
+add
+pop local 2
+push argument 1
+push local 1
+push local 2
+call GameField.getFieldType 3
+pop local 0
+push pointer 0
+push local 0
+call Enemy.validFieldTypeToMove 2
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 1
+push this 0
+push this 1
+push constant 0
+call GameField.setFieldType 4
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 1
+pop this 0
+push local 2
+pop this 1
+push local 0
+push constant 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 1
+push this 0
+push this 1
+push constant 5
+call GameField.setFieldType 4
+pop temp 0
+label IF_FALSE2
+push pointer 0
+call Enemy.draw 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push pointer 0
+push argument 1
+call Enemy.changeMovingDirection 2
+pop temp 0
+label IF_END1
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+push argument 1
+call Enemy.changeMovingDirection 2
+pop temp 0
+call Global.getRandomNumber 0
+push constant 7
+call Global.modulo 2
+push constant 3
+add
+pop this 5
+label IF_END0
+push argument 1
+push this 0
+push this 1
+push constant 5
+call GameField.setFieldType 4
+pop temp 0
+push constant 0
+return
+function Enemy.changeMovingDirection 5
+push argument 0
+pop pointer 0
+call Global.getRandomNumber 0
+push constant 4
+call Global.modulo 2
+pop local 3
+push constant 0
+pop local 4
+label WHILE_EXP0
+push local 4
+push constant 4
+lt
+not
+if-goto WHILE_END0
+push local 3
+call Global.getXVelocity 1
+pop this 2
+push local 3
+call Global.getYVelocity 1
+pop this 3
+push this 0
+push this 2
+add
+pop local 1
+push this 1
+push this 3
+add
+pop local 2
+push argument 1
+push local 1
+push local 2
+call GameField.getFieldType 3
+pop local 0
+push pointer 0
+push local 0
+call Enemy.validFieldTypeToMove 2
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 4
+pop local 4
+push argument 1
+push this 0
+push this 1
+push constant 0
+call GameField.setFieldType 4
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+call Global.getXTranslation 0
+push this 0
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Global.getYTranslation 0
+push this 1
+add
+push constant 16
+call Math.multiply 2
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 1
+pop this 0
+push local 2
+pop this 1
+push local 0
+push constant 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 1
+push this 0
+push this 1
+push constant 5
+call GameField.setFieldType 4
+pop temp 0
+label IF_FALSE1
+push pointer 0
+call Enemy.draw 1
+pop temp 0
+label IF_FALSE0
+push local 3
+push constant 1
+add
+pop local 3
+push local 3
+push constant 4
+call Global.modulo 2
+pop local 3
+push local 4
+push constant 1
+add
+pop local 4
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Enemy.validFieldTypeToMove 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+eq
+push argument 1
+push constant 4
+eq
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
+return
+function Enemy.checkIfDoorsShouldBeDrawn 0
+push argument 0
+pop pointer 0
+push argument 1
+call Door.getXPos 1
+push this 0
+eq
+push argument 1
+call Door.getYPos 1
+push this 1
+eq
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
+return
+function Enemy.draw 2
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Global.getDrawLocation 2
+pop local 0
+push constant 16384
+push local 0
+add
+pop local 1
+push local 1
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 32
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 64
+add
+push constant 3120
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 96
+add
+push constant 4104
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 128
+add
+push constant 8196
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 160
+add
+push constant 8772
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 192
+add
+push constant 8196
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 224
+add
+push constant 8196
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 256
+add
+push constant 9156
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 288
+add
+push constant 4104
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 320
+add
+push constant 3120
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 352
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 384
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 416
+add
+push constant 4080
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 448
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
